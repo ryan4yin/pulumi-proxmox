@@ -12,26 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package proxmox
 
 import (
 	"unicode"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	// "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
+	"github.com/danitso/terraform-provider-proxmox/proxmoxtf"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "xyz"
+	mainPkg = "proxmox"
 	// modules:
-	mainMod = "index" // the y module
+	mainMod = "index" // the main module
+
+	vmMod = "VM"
+	containerMod = "CT"
+
+	systemMod = "System"
+	permissionMod = "Permission"
+
+	storageMod = "Storage"
 )
 
 // makeMember manufactures a type token for the package and the given module and type.
@@ -88,46 +96,95 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(xyz.Provider().(*schema.Provider))
+	p := shimv1.NewProvider(proxmoxtf.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "xyz",
-		Description: "A Pulumi package for creating and managing xyz cloud resources.",
-		Keywords:    []string{"pulumi", "xyz"},
+		Name:        "proxmox",
+		Description: "A Pulumi Provider which adds support for Proxmox solutions.",
+		Keywords:    []string{"pulumi", "proxmox"},
 		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-xyz",
+		Homepage:    "https://github.com/ryan4yin/pulumi-proxmox",
+		Repository:  "https://github.com/ryan4yin/pulumi-proxmox",
 		Config:      map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: makeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+			// Add any required configuration here
+			// TODO cannot read configuration from EnvVars!
+			"endpoint": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"PROXMOX_VE_ENDPOINT"},
+				},
+			},
+			"insecure": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"PROXMOX_VE_INSECURE"},
+				},
+			},
+			"otp": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"PROXMOX_VE_OTP"},
+				},
+			},
+			"password": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"PROXMOX_VE_PASSWORD"},
+				},
+			},
+			"username": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"PROXMOX_VE_USERNAME"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+			// Map each resource in the Terraform provider to a Pulumi type. 
+			// The multi-line form is needed only if you wish to override types or other default options.
+
+			"proxmox_virtual_environment_vm": {Tok: makeResource(vmMod, "VirtualMachine")},
+			"proxmox_virtual_environment_container": {Tok: makeResource(containerMod, "Container")},
+
+			// Storage
+			"proxmox_virtual_environment_file": {Tok: makeResource(storageMod, "File")},
+
+			// System
+			"proxmox_virtual_environment_dns": {Tok: makeResource(systemMod, "DNS")},
+			"proxmox_virtual_environment_certificate": {Tok: makeResource(systemMod, "Certifi")},
+			"proxmox_virtual_environment_hosts": {Tok: makeResource(systemMod, "Hosts")},
+			"proxmox_virtual_environment_time": {Tok: makeResource(systemMod, "Time")},
+
+			// Permission
+			"proxmox_virtual_environment_user": {Tok: makeResource(permissionMod, "User")},
+			"proxmox_virtual_environment_group": {Tok: makeResource(permissionMod, "Group")},
+			"proxmox_virtual_environment_pool": {Tok: makeResource(permissionMod, "Pool")},
+			"proxmox_virtual_environment_role": {Tok: makeResource(permissionMod, "Role")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			// Map each resource in the Terraform provider to a Pulumi function. 
+			"proxmox_virtual_environment_version": {Tok: makeDataSource(mainMod, "getVersion")},
+			"proxmox_virtual_environment_nodes": {Tok: makeDataSource(mainMod, "getNodes")},
+
+			// Storage
+			"proxmox_virtual_environment_datastores": {Tok: makeDataSource(storageMod, "getDatastores")},
+			
+			// System Configuration
+			"proxmox_virtual_environment_dns": {Tok: makeDataSource(systemMod, "getDNS")},
+			"proxmox_virtual_environment_time": {Tok: makeDataSource(systemMod, "getTime")},
+			"proxmox_virtual_environment_hosts": {Tok: makeDataSource(systemMod, "getHosts")},
+
+			// Permissions
+			"proxmox_virtual_environment_users": {Tok: makeDataSource(permissionMod, "getUsers")},
+			"proxmox_virtual_environment_user": {Tok: makeDataSource(permissionMod, "getUser")},
+
+			"proxmox_virtual_environment_group": {Tok: makeDataSource(permissionMod, "getGroup")},
+			"proxmox_virtual_environment_groups": {Tok: makeDataSource(permissionMod, "getGroups")},
+
+			"proxmox_virtual_environment_pool": {Tok: makeDataSource(permissionMod, "getPool")},
+			"proxmox_virtual_environment_pools": {Tok: makeDataSource(permissionMod, "getPools")},
+
+			"proxmox_virtual_environment_role": {Tok: makeDataSource(permissionMod, "getRole")},
+			"proxmox_virtual_environment_roles": {Tok: makeDataSource(permissionMod, "getRoles")},
+
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

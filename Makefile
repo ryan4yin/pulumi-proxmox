@@ -1,7 +1,7 @@
-PROJECT_NAME := xyz Package
+PROJECT_NAME := proxmox Package
 
-PACK             := xyz
-ORG              := pulumi
+PACK             := proxmox
+ORG              := ryan4yin
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
 TF_NAME          := ${PACK}
@@ -10,9 +10,12 @@ VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
 
 TFGEN           := pulumi-tfgen-${PACK}
 PROVIDER        := pulumi-resource-${PACK}
+# get version form git tags and repo's state
 VERSION         := $(shell pulumictl get version)
 
 TESTPARALLELISM := 4
+
+WORKING_DIR     := $(shell pwd)
 
 OS := $(shell uname)
 EMPTY_TO_AVOID_SED := ""
@@ -26,13 +29,13 @@ prepare::
 	mv "provider/cmd/pulumi-resource-x${EMPTY_TO_AVOID_SED}yz" provider/cmd/pulumi-resource-${NAME}
 
 	if [[ "${OS}" != "Darwin" ]]; then \
-		sed -i 's,github.com/pulumi/pulumi-xyz,${REPOSITORY},g' provider/go.mod; \
+		sed -i 's,github.com/pulumi/pulumi-proxmox,${REPOSITORY},g' provider/go.mod; \
 		find ./ ! -path './.git/*' -type f -exec sed -i 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
 	# In MacOS the -i parameter needs an empty string to execute in place.
 	if [[ "${OS}" == "Darwin" ]]; then \
-		sed -i '' 's,github.com/pulumi/pulumi-xyz,${REPOSITORY},g' provider/go.mod; \
+		sed -i '' 's,github.com/pulumi/pulumi-proxmox,${REPOSITORY},g' provider/go.mod; \
 		find ./ ! -path './.git/*' -type f -exec sed -i '' 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
 	fi
 
@@ -102,13 +105,19 @@ clean::
 
 install_plugins::
 	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 2.2.0
+
+
+install_resource_plugin::
+	cd $(WORKING_DIR)/bin && tar -czf ${PROVIDER}.tgz ${PROVIDER}
+	pulumi plugin install resource proxmox ${VERSION} -f $(WORKING_DIR)/bin/${PROVIDER}.tgz
+
 
 install_dotnet_sdk::
 	mkdir -p $(WORKING_DIR)/nuget
 	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
 
 install_python_sdk::
+	pip install `find sdk/python/bin/dist -name '*.tar.gz'`
 
 install_go_sdk::
 
