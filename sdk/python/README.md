@@ -32,7 +32,7 @@ make install_resource_plugin
 
 then install the language's sdks and every thing will be allright.
 
-**Note**: Installing package directly from the package registry like pypi/npm/nuget is not supported yet, you need install package from source via `make`.
+**Note**: Installing package directly from the package registry like pypi/npm/nuget is not supported yet, you need to install package from source via `make`.
 
 
 ### Node.js (Java/TypeScript)
