@@ -123,7 +123,7 @@ VirtualMachine(
         vm_id=100,  # template's vmId
         full=True,  # full clone, not linked clone
         datastore_id="local-lvm",  # template's datastore
-        # node_name="",  # template's node name
+        node_name="pve",  # template's node name
     ),
 
     # resource pool name
