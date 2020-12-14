@@ -105,7 +105,7 @@ proxmox_provider = Provider(
     "proxmox-provider",
     virtual_environment=ProviderVirtualEnvironmentArgs(
         endpoint=os.getenv("PROXMOX_VE_ENDPOINT"),
-        insecure=os.getenv("PROXMOX_VE_INSECURE"),
+        insecure=os.getenv("PROXMOX_VE_INSECURE") == "true",
         username=os.getenv("PROXMOX_VE_USERNAME"),
         password=os.getenv("PROXMOX_VE_PASSWORD")
     )
