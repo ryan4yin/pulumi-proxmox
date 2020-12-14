@@ -9,7 +9,7 @@ based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terrafo
 
 ## TODO
 
-- [] add Self Hosted resource plugin download url.
+- [ ] add Self Hosted resource plugin download url.
 
 ## Build the provider
 
