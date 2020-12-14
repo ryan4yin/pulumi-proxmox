@@ -1,7 +1,7 @@
 # Pulumi Provider for Proxmox
 
 ![master branch status](https://github.com/ryan4yin/pulumi-proxmox/workflows/master/badge.svg)
-
+[![PYPI Version](https://img.shields.io/pypi/v/pulumi_proxmox.svg)](https://pypi.org/project/pulumi_proxmox/)
 
 A Pulumi Provider which adds support for Proxmox solutions.
 
