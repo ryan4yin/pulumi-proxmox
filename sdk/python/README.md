@@ -1,7 +1,7 @@
 # Pulumi Provider for Proxmox
 
 ![master branch status](https://github.com/ryan4yin/pulumi-proxmox/workflows/master/badge.svg)
-
+[![PYPI Version](https://img.shields.io/pypi/v/pulumi_proxmox.svg)](https://pypi.org/project/pulumi_proxmox/)
 
 A Pulumi Provider which adds support for Proxmox solutions.
 
@@ -73,6 +73,114 @@ In addition to [terraform generic provider arguments](https://www.terraform.io/d
     * `otp` - (Optional) The one-time password for the Proxmox Virtual Environment API (can also be sourced from `PROXMOX_VE_OTP`).
     * `password` - (Required) The password for the Proxmox Virtual Environment API (can also be sourced from `PROXMOX_VE_PASSWORD`).
     * `username` - (Required) The username and realm for the Proxmox Virtual Environment API (can also be sourced from `PROXMOX_VE_USERNAME`).
+
+## Examples
+
+set pve Environment variables first:
+
+```shell
+export PROXMOX_VE_ENDPOINT="https://<server-host>:8006"
+export PROXMOX_VE_INSECURE=true
+export PROXMOX_VE_USERNAME=root@pam
+export PROXMOX_VE_PASSWORD="<password>"
+```
+
+Create VirtualMachine using Python SDK:
+
+```python
+import os
+from pathlib import Path
+
+import pulumi
+from pulumi_proxmox.vm import *
+from pulumi_proxmox import Provider, ProviderVirtualEnvironmentArgs
+
+# this provider cannot read configuration from EnvVars yet,
+# You must manually pass parameters by instantiating a custom provider
+proxmox_provider = Provider(
+    "proxmox-provider",
+    virtual_environment=ProviderVirtualEnvironmentArgs(
+        endpoint=os.getenv("PROXMOX_VE_ENDPOINT"),
+        insecure=os.getenv("PROXMOX_VE_INSECURE"),
+        username=os.getenv("PROXMOX_VE_USERNAME"),
+        password=os.getenv("PROXMOX_VE_PASSWORD")
+    )
+)
+
+# create a virtual machine
+VirtualMachine(
+    "ubuntu-vm-0",
+    name="ubuntu-vm-0",
+    description="a ubuntu vm for test",
+    node_name="pve",
+    # clone from a vm template
+    clone=VirtualMachineCloneArgs(
+        vm_id=100,  # template's vmId
+        full=True,  # full clone, not linked clone
+        datastore_id="local-lvm",  # template's datastore
+        # node_name="",  # template's node name
+    ),
+
+    # resource pool name
+    pool_id="test-resource",
+    cpu=VirtualMachineCpuArgs(
+        cores=2,
+        sockets=2,
+    ),
+    memory=VirtualMachineMemoryArgs(
+        dedicated="2048",  # unit: MB
+        shared="2048"
+    ),
+    operating_system=VirtualMachineOperatingSystemArgs(
+        type="l26"  # l26: linux2.6-linux5.x
+    ),
+    agent=VirtualMachineAgentArgs(
+        enabled=True,  # enable qemu guest agent
+    ),
+    disks=[
+        VirtualMachineDiskArgs(
+            datastore_id="local-lvm",
+            size="30",  # unit: GB
+        )
+    ],
+    network_devices=[
+        VirtualMachineNetworkDeviceArgs(
+            enabled=True,
+            bridge="vmbr0",
+            model="virtio",
+            vlan_id=0,
+        )
+    ],
+    # cloud init configuration
+    initialization=VirtualMachineInitializationArgs(
+        datastore_id="local-lvm",
+        dns=VirtualMachineInitializationDnsArgs(
+            # dns servers,
+            server="114.114.114.114,8.8.8.8",
+        ),
+        ip_configs=[
+            VirtualMachineInitializationIpConfigArgs(
+                ipv4=VirtualMachineInitializationIpConfigIpv4Args(
+                    address="192.168.1.111/24",
+                    gateway="192.168.1.1"
+                )
+            )
+        ],
+        user_account=VirtualMachineInitializationUserAccountArgs(
+            # set root's ssh key
+            keys=[
+                Path("ssh-common.pub").read_text()
+            ],
+            username="root",
+        )
+    ),
+    
+    # use custom provider
+    opts=pulumi.ResourceOptions(
+        provider=proxmox_provider
+    )
+)
+```
 
 ## Reference
 
