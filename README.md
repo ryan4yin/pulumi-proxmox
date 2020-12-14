@@ -7,8 +7,11 @@ A Pulumi Provider which adds support for Proxmox solutions.
 
 based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox), read its docs for details.
 
+## TODO
 
-### Build the provider:
+- [] add Self Hosted resource plugin download url.
+
+## Build the provider
 
 
 In order to properly build the sdks, the following tools are expected:

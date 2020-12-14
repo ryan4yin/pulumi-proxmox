@@ -107,6 +107,8 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://github.com/ryan4yin/pulumi-proxmox",
 		Repository:  "https://github.com/ryan4yin/pulumi-proxmox",
+		// TODO Self Hosted resource plugin download url.
+		// PluginDownloadURL: "",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here
 			// TODO cannot read configuration from EnvVars!
