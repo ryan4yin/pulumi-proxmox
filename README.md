@@ -9,6 +9,7 @@ based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terrafo
 
 ## TODO
 
+- [ ] fix Bug: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
 - [ ] fix github actions, build and upload resource plugin to github releases automatically.
 - [ ] add Self Hosted resource plugin download url.
 
@@ -65,9 +66,6 @@ To use from .NET, use the following command:
     $ make install_dotnet_sdk
 
 ## Configuration
-
->BUG: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
-I'm Working on it now.
 
 In addition to [terraform generic provider arguments](https://www.terraform.io/docs/configuration/providers.html) (e.g. `alias` and `version`), the following arguments are supported in the Proxmox `provider` block:
 
