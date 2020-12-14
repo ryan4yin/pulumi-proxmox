@@ -94,10 +94,10 @@ import os
 from pathlib import Path
 
 import pulumi
-from pulumi_proxmox.vm import *
 from pulumi_proxmox import Provider, ProviderVirtualEnvironmentArgs
+from pulumi_proxmox.vm import *
 
-# this provider cannot read configuration from EnvVars yet,
+# this provider cannot read configuration from Environment variables yet,
 # You must manually pass parameters by instantiating a custom provider
 proxmox_provider = Provider(
     "proxmox-provider",
