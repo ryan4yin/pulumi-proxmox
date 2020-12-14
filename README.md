@@ -115,7 +115,8 @@ VirtualMachine(
     name="ubuntu-vm-0",
     description="a ubuntu vm for test",
     node_name="pve",
-    # start the virtual machine, and set `onboot` to true.(start VM during system bootup)
+    # start the virtual machine after it was created successfully,
+    # and set `onboot` to true.(the VM will be started during system bootup)
     started=True,
     # clone from a vm template
     clone=VirtualMachineCloneArgs(
