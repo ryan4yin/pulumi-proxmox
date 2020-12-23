@@ -13,6 +13,11 @@ based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terrafo
 - [ ] fix github actions, build and upload resource plugin to github releases automatically.
 - [ ] add Self Hosted resource plugin download url.
 
+known issues:
+
+1. cannot set vm's `onboot` to `True`(start the vm during system bootup)
+1. cannot resize disk automatically.
+
 ## Build the provider
 
 

@@ -7,8 +7,13 @@ A Pulumi Provider which adds support for Proxmox solutions.
 
 based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox), read its docs for details.
 
+## TODO
 
-### Build the provider:
+- [ ] fix Bug: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
+- [ ] fix github actions, build and upload resource plugin to github releases automatically.
+- [ ] add Self Hosted resource plugin download url.
+
+## Build the provider
 
 
 In order to properly build the sdks, the following tools are expected:
@@ -62,9 +67,6 @@ To use from .NET, use the following command:
 
 ## Configuration
 
->BUG: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
-I'm Working on it now.
-
 In addition to [terraform generic provider arguments](https://www.terraform.io/docs/configuration/providers.html) (e.g. `alias` and `version`), the following arguments are supported in the Proxmox `provider` block:
 
 * `virtual_environment` - (Optional) The Proxmox Virtual Environment configuration.
@@ -92,16 +94,16 @@ import os
 from pathlib import Path
 
 import pulumi
-from pulumi_proxmox.vm import *
 from pulumi_proxmox import Provider, ProviderVirtualEnvironmentArgs
+from pulumi_proxmox.vm import *
 
-# this provider cannot read configuration from EnvVars yet,
+# this provider cannot read configuration from Environment variables yet,
 # You must manually pass parameters by instantiating a custom provider
 proxmox_provider = Provider(
     "proxmox-provider",
     virtual_environment=ProviderVirtualEnvironmentArgs(
         endpoint=os.getenv("PROXMOX_VE_ENDPOINT"),
-        insecure=os.getenv("PROXMOX_VE_INSECURE"),
+        insecure=os.getenv("PROXMOX_VE_INSECURE") == "true",
         username=os.getenv("PROXMOX_VE_USERNAME"),
         password=os.getenv("PROXMOX_VE_PASSWORD")
     )
@@ -113,12 +115,15 @@ VirtualMachine(
     name="ubuntu-vm-0",
     description="a ubuntu vm for test",
     node_name="pve",
+    # start the virtual machine after it was created successfully,
+    # and set `StartOnBoot` to true.(the VM will be started during system bootup)
+    started=True,
     # clone from a vm template
     clone=VirtualMachineCloneArgs(
         vm_id=100,  # template's vmId
         full=True,  # full clone, not linked clone
         datastore_id="local-lvm",  # template's datastore
-        # node_name="",  # template's node name
+        node_name="pve",  # template's node name
     ),
 
     # resource pool name
