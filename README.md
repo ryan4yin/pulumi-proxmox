@@ -7,6 +7,8 @@ A Pulumi Provider which adds support for Proxmox solutions.
 
 based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox), read its docs for details.
 
+There is another more popular terraform provider: [Telmate/terraform-provider-proxmox](https://github.com/Telmate/terraform-provider-proxmox). It has fewer bugs.
+
 ## TODO
 
 - [ ] fix Bug: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
