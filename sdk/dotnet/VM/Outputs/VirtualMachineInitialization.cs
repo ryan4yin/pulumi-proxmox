@@ -16,6 +16,7 @@ namespace Pulumi.Proxmox.VM.Outputs
         public readonly string? DatastoreId;
         public readonly Outputs.VirtualMachineInitializationDns? Dns;
         public readonly ImmutableArray<Outputs.VirtualMachineInitializationIpConfig> IpConfigs;
+        public readonly string? Type;
         public readonly Outputs.VirtualMachineInitializationUserAccount? UserAccount;
         public readonly string? UserDataFileId;
 
@@ -27,6 +28,8 @@ namespace Pulumi.Proxmox.VM.Outputs
 
             ImmutableArray<Outputs.VirtualMachineInitializationIpConfig> ipConfigs,
 
+            string? type,
+
             Outputs.VirtualMachineInitializationUserAccount? userAccount,
 
             string? userDataFileId)
@@ -34,6 +37,7 @@ namespace Pulumi.Proxmox.VM.Outputs
             DatastoreId = datastoreId;
             Dns = dns;
             IpConfigs = ipConfigs;
+            Type = type;
             UserAccount = userAccount;
             UserDataFileId = userDataFileId;
         }

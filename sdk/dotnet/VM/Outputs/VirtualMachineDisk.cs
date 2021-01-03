@@ -16,6 +16,7 @@ namespace Pulumi.Proxmox.VM.Outputs
         public readonly string? DatastoreId;
         public readonly string? FileFormat;
         public readonly string? FileId;
+        public readonly string Interface;
         public readonly int? Size;
         public readonly Outputs.VirtualMachineDiskSpeed? Speed;
 
@@ -27,6 +28,8 @@ namespace Pulumi.Proxmox.VM.Outputs
 
             string? fileId,
 
+            string @interface,
+
             int? size,
 
             Outputs.VirtualMachineDiskSpeed? speed)
@@ -34,6 +37,7 @@ namespace Pulumi.Proxmox.VM.Outputs
             DatastoreId = datastoreId;
             FileFormat = fileFormat;
             FileId = fileId;
+            Interface = @interface;
             Size = size;
             Speed = speed;
         }

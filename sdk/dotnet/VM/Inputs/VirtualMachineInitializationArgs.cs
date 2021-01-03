@@ -26,6 +26,9 @@ namespace Pulumi.Proxmox.VM.Inputs
             set => _ipConfigs = value;
         }
 
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
         [Input("userAccount")]
         public Input<Inputs.VirtualMachineInitializationUserAccountArgs>? UserAccount { get; set; }
 

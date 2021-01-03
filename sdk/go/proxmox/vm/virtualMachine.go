@@ -51,10 +51,14 @@ type VirtualMachine struct {
 	NetworkInterfaceNames pulumi.StringArrayOutput `pulumi:"networkInterfaceNames"`
 	// The node name
 	NodeName pulumi.StringOutput `pulumi:"nodeName"`
+	// Start VM on Node boot
+	OnBoot pulumi.BoolPtrOutput `pulumi:"onBoot"`
 	// The operating system configuration
 	OperatingSystem VirtualMachineOperatingSystemPtrOutput `pulumi:"operatingSystem"`
 	// The ID of the pool to assign the virtual machine to
 	PoolId pulumi.StringPtrOutput `pulumi:"poolId"`
+	// Wether to reboot vm after creation
+	Reboot pulumi.BoolPtrOutput `pulumi:"reboot"`
 	// The serial devices
 	SerialDevices VirtualMachineSerialDeviceArrayOutput `pulumi:"serialDevices"`
 	// Whether to start the virtual machine
@@ -138,10 +142,14 @@ type virtualMachineState struct {
 	NetworkInterfaceNames []string `pulumi:"networkInterfaceNames"`
 	// The node name
 	NodeName *string `pulumi:"nodeName"`
+	// Start VM on Node boot
+	OnBoot *bool `pulumi:"onBoot"`
 	// The operating system configuration
 	OperatingSystem *VirtualMachineOperatingSystem `pulumi:"operatingSystem"`
 	// The ID of the pool to assign the virtual machine to
 	PoolId *string `pulumi:"poolId"`
+	// Wether to reboot vm after creation
+	Reboot *bool `pulumi:"reboot"`
 	// The serial devices
 	SerialDevices []VirtualMachineSerialDevice `pulumi:"serialDevices"`
 	// Whether to start the virtual machine
@@ -195,10 +203,14 @@ type VirtualMachineState struct {
 	NetworkInterfaceNames pulumi.StringArrayInput
 	// The node name
 	NodeName pulumi.StringPtrInput
+	// Start VM on Node boot
+	OnBoot pulumi.BoolPtrInput
 	// The operating system configuration
 	OperatingSystem VirtualMachineOperatingSystemPtrInput
 	// The ID of the pool to assign the virtual machine to
 	PoolId pulumi.StringPtrInput
+	// Wether to reboot vm after creation
+	Reboot pulumi.BoolPtrInput
 	// The serial devices
 	SerialDevices VirtualMachineSerialDeviceArrayInput
 	// Whether to start the virtual machine
@@ -248,10 +260,14 @@ type virtualMachineArgs struct {
 	NetworkDevices []VirtualMachineNetworkDevice `pulumi:"networkDevices"`
 	// The node name
 	NodeName string `pulumi:"nodeName"`
+	// Start VM on Node boot
+	OnBoot *bool `pulumi:"onBoot"`
 	// The operating system configuration
 	OperatingSystem *VirtualMachineOperatingSystem `pulumi:"operatingSystem"`
 	// The ID of the pool to assign the virtual machine to
 	PoolId *string `pulumi:"poolId"`
+	// Wether to reboot vm after creation
+	Reboot *bool `pulumi:"reboot"`
 	// The serial devices
 	SerialDevices []VirtualMachineSerialDevice `pulumi:"serialDevices"`
 	// Whether to start the virtual machine
@@ -298,10 +314,14 @@ type VirtualMachineArgs struct {
 	NetworkDevices VirtualMachineNetworkDeviceArrayInput
 	// The node name
 	NodeName pulumi.StringInput
+	// Start VM on Node boot
+	OnBoot pulumi.BoolPtrInput
 	// The operating system configuration
 	OperatingSystem VirtualMachineOperatingSystemPtrInput
 	// The ID of the pool to assign the virtual machine to
 	PoolId pulumi.StringPtrInput
+	// Wether to reboot vm after creation
+	Reboot pulumi.BoolPtrInput
 	// The serial devices
 	SerialDevices VirtualMachineSerialDeviceArrayInput
 	// Whether to start the virtual machine

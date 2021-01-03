@@ -155,6 +155,7 @@ export namespace VM {
         datastoreId?: pulumi.Input<string>;
         full?: pulumi.Input<boolean>;
         nodeName?: pulumi.Input<string>;
+        retries?: pulumi.Input<number>;
         vmId: pulumi.Input<number>;
     }
 
@@ -172,6 +173,7 @@ export namespace VM {
         datastoreId?: pulumi.Input<string>;
         fileFormat?: pulumi.Input<string>;
         fileId?: pulumi.Input<string>;
+        interface: pulumi.Input<string>;
         size?: pulumi.Input<number>;
         speed?: pulumi.Input<inputs.VM.VirtualMachineDiskSpeed>;
     }
@@ -187,6 +189,7 @@ export namespace VM {
         datastoreId?: pulumi.Input<string>;
         dns?: pulumi.Input<inputs.VM.VirtualMachineInitializationDns>;
         ipConfigs?: pulumi.Input<pulumi.Input<inputs.VM.VirtualMachineInitializationIpConfig>[]>;
+        type?: pulumi.Input<string>;
         userAccount?: pulumi.Input<inputs.VM.VirtualMachineInitializationUserAccount>;
         userDataFileId?: pulumi.Input<string>;
     }

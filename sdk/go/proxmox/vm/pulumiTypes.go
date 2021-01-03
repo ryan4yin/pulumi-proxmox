@@ -482,6 +482,7 @@ type VirtualMachineClone struct {
 	DatastoreId *string `pulumi:"datastoreId"`
 	Full        *bool   `pulumi:"full"`
 	NodeName    *string `pulumi:"nodeName"`
+	Retries     *int    `pulumi:"retries"`
 	VmId        int     `pulumi:"vmId"`
 }
 
@@ -500,6 +501,7 @@ type VirtualMachineCloneArgs struct {
 	DatastoreId pulumi.StringPtrInput `pulumi:"datastoreId"`
 	Full        pulumi.BoolPtrInput   `pulumi:"full"`
 	NodeName    pulumi.StringPtrInput `pulumi:"nodeName"`
+	Retries     pulumi.IntPtrInput    `pulumi:"retries"`
 	VmId        pulumi.IntInput       `pulumi:"vmId"`
 }
 
@@ -591,6 +593,10 @@ func (o VirtualMachineCloneOutput) NodeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualMachineClone) *string { return v.NodeName }).(pulumi.StringPtrOutput)
 }
 
+func (o VirtualMachineCloneOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VirtualMachineClone) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
 func (o VirtualMachineCloneOutput) VmId() pulumi.IntOutput {
 	return o.ApplyT(func(v VirtualMachineClone) int { return v.VmId }).(pulumi.IntOutput)
 }
@@ -638,6 +644,15 @@ func (o VirtualMachineClonePtrOutput) NodeName() pulumi.StringPtrOutput {
 		}
 		return v.NodeName
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o VirtualMachineClonePtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VirtualMachineClone) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
 }
 
 func (o VirtualMachineClonePtrOutput) VmId() pulumi.IntPtrOutput {
@@ -869,6 +884,7 @@ type VirtualMachineDisk struct {
 	DatastoreId *string                  `pulumi:"datastoreId"`
 	FileFormat  *string                  `pulumi:"fileFormat"`
 	FileId      *string                  `pulumi:"fileId"`
+	Interface   string                   `pulumi:"interface"`
 	Size        *int                     `pulumi:"size"`
 	Speed       *VirtualMachineDiskSpeed `pulumi:"speed"`
 }
@@ -888,6 +904,7 @@ type VirtualMachineDiskArgs struct {
 	DatastoreId pulumi.StringPtrInput           `pulumi:"datastoreId"`
 	FileFormat  pulumi.StringPtrInput           `pulumi:"fileFormat"`
 	FileId      pulumi.StringPtrInput           `pulumi:"fileId"`
+	Interface   pulumi.StringInput              `pulumi:"interface"`
 	Size        pulumi.IntPtrInput              `pulumi:"size"`
 	Speed       VirtualMachineDiskSpeedPtrInput `pulumi:"speed"`
 }
@@ -953,6 +970,10 @@ func (o VirtualMachineDiskOutput) FileFormat() pulumi.StringPtrOutput {
 
 func (o VirtualMachineDiskOutput) FileId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VirtualMachineDisk) *string { return v.FileId }).(pulumi.StringPtrOutput)
+}
+
+func (o VirtualMachineDiskOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v VirtualMachineDisk) string { return v.Interface }).(pulumi.StringOutput)
 }
 
 func (o VirtualMachineDiskOutput) Size() pulumi.IntPtrOutput {
@@ -1158,6 +1179,7 @@ type VirtualMachineInitialization struct {
 	DatastoreId    *string                                  `pulumi:"datastoreId"`
 	Dns            *VirtualMachineInitializationDns         `pulumi:"dns"`
 	IpConfigs      []VirtualMachineInitializationIpConfig   `pulumi:"ipConfigs"`
+	Type           *string                                  `pulumi:"type"`
 	UserAccount    *VirtualMachineInitializationUserAccount `pulumi:"userAccount"`
 	UserDataFileId *string                                  `pulumi:"userDataFileId"`
 }
@@ -1177,6 +1199,7 @@ type VirtualMachineInitializationArgs struct {
 	DatastoreId    pulumi.StringPtrInput                           `pulumi:"datastoreId"`
 	Dns            VirtualMachineInitializationDnsPtrInput         `pulumi:"dns"`
 	IpConfigs      VirtualMachineInitializationIpConfigArrayInput  `pulumi:"ipConfigs"`
+	Type           pulumi.StringPtrInput                           `pulumi:"type"`
 	UserAccount    VirtualMachineInitializationUserAccountPtrInput `pulumi:"userAccount"`
 	UserDataFileId pulumi.StringPtrInput                           `pulumi:"userDataFileId"`
 }
@@ -1269,6 +1292,10 @@ func (o VirtualMachineInitializationOutput) IpConfigs() VirtualMachineInitializa
 	return o.ApplyT(func(v VirtualMachineInitialization) []VirtualMachineInitializationIpConfig { return v.IpConfigs }).(VirtualMachineInitializationIpConfigArrayOutput)
 }
 
+func (o VirtualMachineInitializationOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VirtualMachineInitialization) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
 func (o VirtualMachineInitializationOutput) UserAccount() VirtualMachineInitializationUserAccountPtrOutput {
 	return o.ApplyT(func(v VirtualMachineInitialization) *VirtualMachineInitializationUserAccount { return v.UserAccount }).(VirtualMachineInitializationUserAccountPtrOutput)
 }
@@ -1320,6 +1347,15 @@ func (o VirtualMachineInitializationPtrOutput) IpConfigs() VirtualMachineInitial
 		}
 		return v.IpConfigs
 	}).(VirtualMachineInitializationIpConfigArrayOutput)
+}
+
+func (o VirtualMachineInitializationPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VirtualMachineInitialization) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o VirtualMachineInitializationPtrOutput) UserAccount() VirtualMachineInitializationUserAccountPtrOutput {

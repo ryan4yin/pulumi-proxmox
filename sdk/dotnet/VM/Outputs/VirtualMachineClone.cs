@@ -16,6 +16,7 @@ namespace Pulumi.Proxmox.VM.Outputs
         public readonly string? DatastoreId;
         public readonly bool? Full;
         public readonly string? NodeName;
+        public readonly int? Retries;
         public readonly int VmId;
 
         [OutputConstructor]
@@ -26,11 +27,14 @@ namespace Pulumi.Proxmox.VM.Outputs
 
             string? nodeName,
 
+            int? retries,
+
             int vmId)
         {
             DatastoreId = datastoreId;
             Full = full;
             NodeName = nodeName;
+            Retries = retries;
             VmId = vmId;
         }
     }

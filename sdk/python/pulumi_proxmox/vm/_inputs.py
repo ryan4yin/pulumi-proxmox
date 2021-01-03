@@ -158,7 +158,8 @@ class VirtualMachineCloneArgs:
                  vm_id: pulumi.Input[int],
                  datastore_id: Optional[pulumi.Input[str]] = None,
                  full: Optional[pulumi.Input[bool]] = None,
-                 node_name: Optional[pulumi.Input[str]] = None):
+                 node_name: Optional[pulumi.Input[str]] = None,
+                 retries: Optional[pulumi.Input[int]] = None):
         pulumi.set(__self__, "vm_id", vm_id)
         if datastore_id is not None:
             pulumi.set(__self__, "datastore_id", datastore_id)
@@ -166,6 +167,8 @@ class VirtualMachineCloneArgs:
             pulumi.set(__self__, "full", full)
         if node_name is not None:
             pulumi.set(__self__, "node_name", node_name)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
 
     @property
     @pulumi.getter(name="vmId")
@@ -202,6 +205,15 @@ class VirtualMachineCloneArgs:
     @node_name.setter
     def node_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "node_name", value)
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retries")
+
+    @retries.setter
+    def retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retries", value)
 
 
 @pulumi.input_type
@@ -296,11 +308,13 @@ class VirtualMachineCpuArgs:
 @pulumi.input_type
 class VirtualMachineDiskArgs:
     def __init__(__self__, *,
+                 interface: pulumi.Input[str],
                  datastore_id: Optional[pulumi.Input[str]] = None,
                  file_format: Optional[pulumi.Input[str]] = None,
                  file_id: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  speed: Optional[pulumi.Input['VirtualMachineDiskSpeedArgs']] = None):
+        pulumi.set(__self__, "interface", interface)
         if datastore_id is not None:
             pulumi.set(__self__, "datastore_id", datastore_id)
         if file_format is not None:
@@ -311,6 +325,15 @@ class VirtualMachineDiskArgs:
             pulumi.set(__self__, "size", size)
         if speed is not None:
             pulumi.set(__self__, "speed", speed)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: pulumi.Input[str]):
+        pulumi.set(self, "interface", value)
 
     @property
     @pulumi.getter(name="datastoreId")
@@ -417,6 +440,7 @@ class VirtualMachineInitializationArgs:
                  datastore_id: Optional[pulumi.Input[str]] = None,
                  dns: Optional[pulumi.Input['VirtualMachineInitializationDnsArgs']] = None,
                  ip_configs: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualMachineInitializationIpConfigArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
                  user_account: Optional[pulumi.Input['VirtualMachineInitializationUserAccountArgs']] = None,
                  user_data_file_id: Optional[pulumi.Input[str]] = None):
         if datastore_id is not None:
@@ -425,6 +449,8 @@ class VirtualMachineInitializationArgs:
             pulumi.set(__self__, "dns", dns)
         if ip_configs is not None:
             pulumi.set(__self__, "ip_configs", ip_configs)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if user_account is not None:
             pulumi.set(__self__, "user_account", user_account)
         if user_data_file_id is not None:
@@ -456,6 +482,15 @@ class VirtualMachineInitializationArgs:
     @ip_configs.setter
     def ip_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VirtualMachineInitializationIpConfigArgs']]]]):
         pulumi.set(self, "ip_configs", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="userAccount")

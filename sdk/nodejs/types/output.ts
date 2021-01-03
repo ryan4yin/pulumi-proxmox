@@ -180,6 +180,7 @@ export namespace VM {
         datastoreId?: string;
         full?: boolean;
         nodeName?: string;
+        retries?: number;
         vmId: number;
     }
 
@@ -197,6 +198,7 @@ export namespace VM {
         datastoreId?: string;
         fileFormat?: string;
         fileId?: string;
+        interface: string;
         size?: number;
         speed?: outputs.VM.VirtualMachineDiskSpeed;
     }
@@ -212,6 +214,7 @@ export namespace VM {
         datastoreId?: string;
         dns?: outputs.VM.VirtualMachineInitializationDns;
         ipConfigs?: outputs.VM.VirtualMachineInitializationIpConfig[];
+        type?: string;
         userAccount?: outputs.VM.VirtualMachineInitializationUserAccount;
         userDataFileId?: string;
     }

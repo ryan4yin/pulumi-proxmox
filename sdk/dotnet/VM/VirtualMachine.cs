@@ -126,6 +126,12 @@ namespace Pulumi.Proxmox.VM
         public Output<string> NodeName { get; private set; } = null!;
 
         /// <summary>
+        /// Start VM on Node boot
+        /// </summary>
+        [Output("onBoot")]
+        public Output<bool?> OnBoot { get; private set; } = null!;
+
+        /// <summary>
         /// The operating system configuration
         /// </summary>
         [Output("operatingSystem")]
@@ -136,6 +142,12 @@ namespace Pulumi.Proxmox.VM
         /// </summary>
         [Output("poolId")]
         public Output<string?> PoolId { get; private set; } = null!;
+
+        /// <summary>
+        /// Wether to reboot vm after creation
+        /// </summary>
+        [Output("reboot")]
+        public Output<bool?> Reboot { get; private set; } = null!;
 
         /// <summary>
         /// The serial devices
@@ -322,6 +334,12 @@ namespace Pulumi.Proxmox.VM
         public Input<string> NodeName { get; set; } = null!;
 
         /// <summary>
+        /// Start VM on Node boot
+        /// </summary>
+        [Input("onBoot")]
+        public Input<bool>? OnBoot { get; set; }
+
+        /// <summary>
         /// The operating system configuration
         /// </summary>
         [Input("operatingSystem")]
@@ -332,6 +350,12 @@ namespace Pulumi.Proxmox.VM
         /// </summary>
         [Input("poolId")]
         public Input<string>? PoolId { get; set; }
+
+        /// <summary>
+        /// Wether to reboot vm after creation
+        /// </summary>
+        [Input("reboot")]
+        public Input<bool>? Reboot { get; set; }
 
         [Input("serialDevices")]
         private InputList<Inputs.VirtualMachineSerialDeviceArgs>? _serialDevices;
@@ -533,6 +557,12 @@ namespace Pulumi.Proxmox.VM
         public Input<string>? NodeName { get; set; }
 
         /// <summary>
+        /// Start VM on Node boot
+        /// </summary>
+        [Input("onBoot")]
+        public Input<bool>? OnBoot { get; set; }
+
+        /// <summary>
         /// The operating system configuration
         /// </summary>
         [Input("operatingSystem")]
@@ -543,6 +573,12 @@ namespace Pulumi.Proxmox.VM
         /// </summary>
         [Input("poolId")]
         public Input<string>? PoolId { get; set; }
+
+        /// <summary>
+        /// Wether to reboot vm after creation
+        /// </summary>
+        [Input("reboot")]
+        public Input<bool>? Reboot { get; set; }
 
         [Input("serialDevices")]
         private InputList<Inputs.VirtualMachineSerialDeviceGetArgs>? _serialDevices;

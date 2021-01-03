@@ -132,7 +132,8 @@ class VirtualMachineClone(dict):
                  vm_id: int,
                  datastore_id: Optional[str] = None,
                  full: Optional[bool] = None,
-                 node_name: Optional[str] = None):
+                 node_name: Optional[str] = None,
+                 retries: Optional[int] = None):
         pulumi.set(__self__, "vm_id", vm_id)
         if datastore_id is not None:
             pulumi.set(__self__, "datastore_id", datastore_id)
@@ -140,6 +141,8 @@ class VirtualMachineClone(dict):
             pulumi.set(__self__, "full", full)
         if node_name is not None:
             pulumi.set(__self__, "node_name", node_name)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
 
     @property
     @pulumi.getter(name="vmId")
@@ -160,6 +163,11 @@ class VirtualMachineClone(dict):
     @pulumi.getter(name="nodeName")
     def node_name(self) -> Optional[str]:
         return pulumi.get(self, "node_name")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[int]:
+        return pulumi.get(self, "retries")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -232,11 +240,13 @@ class VirtualMachineCpu(dict):
 @pulumi.output_type
 class VirtualMachineDisk(dict):
     def __init__(__self__, *,
+                 interface: str,
                  datastore_id: Optional[str] = None,
                  file_format: Optional[str] = None,
                  file_id: Optional[str] = None,
                  size: Optional[int] = None,
                  speed: Optional['outputs.VirtualMachineDiskSpeed'] = None):
+        pulumi.set(__self__, "interface", interface)
         if datastore_id is not None:
             pulumi.set(__self__, "datastore_id", datastore_id)
         if file_format is not None:
@@ -247,6 +257,11 @@ class VirtualMachineDisk(dict):
             pulumi.set(__self__, "size", size)
         if speed is not None:
             pulumi.set(__self__, "speed", speed)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        return pulumi.get(self, "interface")
 
     @property
     @pulumi.getter(name="datastoreId")
@@ -323,6 +338,7 @@ class VirtualMachineInitialization(dict):
                  datastore_id: Optional[str] = None,
                  dns: Optional['outputs.VirtualMachineInitializationDns'] = None,
                  ip_configs: Optional[Sequence['outputs.VirtualMachineInitializationIpConfig']] = None,
+                 type: Optional[str] = None,
                  user_account: Optional['outputs.VirtualMachineInitializationUserAccount'] = None,
                  user_data_file_id: Optional[str] = None):
         if datastore_id is not None:
@@ -331,6 +347,8 @@ class VirtualMachineInitialization(dict):
             pulumi.set(__self__, "dns", dns)
         if ip_configs is not None:
             pulumi.set(__self__, "ip_configs", ip_configs)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if user_account is not None:
             pulumi.set(__self__, "user_account", user_account)
         if user_data_file_id is not None:
@@ -350,6 +368,11 @@ class VirtualMachineInitialization(dict):
     @pulumi.getter(name="ipConfigs")
     def ip_configs(self) -> Optional[Sequence['outputs.VirtualMachineInitializationIpConfig']]:
         return pulumi.get(self, "ip_configs")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="userAccount")

@@ -21,6 +21,9 @@ namespace Pulumi.Proxmox.VM.Inputs
         [Input("nodeName")]
         public Input<string>? NodeName { get; set; }
 
+        [Input("retries")]
+        public Input<int>? Retries { get; set; }
+
         [Input("vmId", required: true)]
         public Input<int> VmId { get; set; } = null!;
 

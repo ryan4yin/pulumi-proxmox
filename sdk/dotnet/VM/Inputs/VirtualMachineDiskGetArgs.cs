@@ -21,6 +21,9 @@ namespace Pulumi.Proxmox.VM.Inputs
         [Input("fileId")]
         public Input<string>? FileId { get; set; }
 
+        [Input("interface", required: true)]
+        public Input<string> Interface { get; set; } = null!;
+
         [Input("size")]
         public Input<int>? Size { get; set; }
 

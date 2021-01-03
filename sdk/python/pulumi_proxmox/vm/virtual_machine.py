@@ -32,8 +32,10 @@ class VirtualMachine(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineNetworkDeviceArgs']]]]] = None,
                  node_name: Optional[pulumi.Input[str]] = None,
+                 on_boot: Optional[pulumi.Input[bool]] = None,
                  operating_system: Optional[pulumi.Input[pulumi.InputType['VirtualMachineOperatingSystemArgs']]] = None,
                  pool_id: Optional[pulumi.Input[str]] = None,
+                 reboot: Optional[pulumi.Input[bool]] = None,
                  serial_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineSerialDeviceArgs']]]]] = None,
                  started: Optional[pulumi.Input[bool]] = None,
                  tablet_device: Optional[pulumi.Input[bool]] = None,
@@ -62,8 +64,10 @@ class VirtualMachine(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineNetworkDeviceArgs']]]] network_devices: The network devices
         :param pulumi.Input[str] node_name: The node name
+        :param pulumi.Input[bool] on_boot: Start VM on Node boot
         :param pulumi.Input[pulumi.InputType['VirtualMachineOperatingSystemArgs']] operating_system: The operating system configuration
         :param pulumi.Input[str] pool_id: The ID of the pool to assign the virtual machine to
+        :param pulumi.Input[bool] reboot: Wether to reboot vm after creation
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineSerialDeviceArgs']]]] serial_devices: The serial devices
         :param pulumi.Input[bool] started: Whether to start the virtual machine
         :param pulumi.Input[bool] tablet_device: Whether to enable the USB tablet device
@@ -105,8 +109,10 @@ class VirtualMachine(pulumi.CustomResource):
             if node_name is None:
                 raise TypeError("Missing required property 'node_name'")
             __props__['node_name'] = node_name
+            __props__['on_boot'] = on_boot
             __props__['operating_system'] = operating_system
             __props__['pool_id'] = pool_id
+            __props__['reboot'] = reboot
             __props__['serial_devices'] = serial_devices
             __props__['started'] = started
             __props__['tablet_device'] = tablet_device
@@ -146,8 +152,10 @@ class VirtualMachine(pulumi.CustomResource):
             network_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineNetworkDeviceArgs']]]]] = None,
             network_interface_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             node_name: Optional[pulumi.Input[str]] = None,
+            on_boot: Optional[pulumi.Input[bool]] = None,
             operating_system: Optional[pulumi.Input[pulumi.InputType['VirtualMachineOperatingSystemArgs']]] = None,
             pool_id: Optional[pulumi.Input[str]] = None,
+            reboot: Optional[pulumi.Input[bool]] = None,
             serial_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineSerialDeviceArgs']]]]] = None,
             started: Optional[pulumi.Input[bool]] = None,
             tablet_device: Optional[pulumi.Input[bool]] = None,
@@ -180,8 +188,10 @@ class VirtualMachine(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineNetworkDeviceArgs']]]] network_devices: The network devices
         :param pulumi.Input[Sequence[pulumi.Input[str]]] network_interface_names: The network interface names published by the QEMU agent
         :param pulumi.Input[str] node_name: The node name
+        :param pulumi.Input[bool] on_boot: Start VM on Node boot
         :param pulumi.Input[pulumi.InputType['VirtualMachineOperatingSystemArgs']] operating_system: The operating system configuration
         :param pulumi.Input[str] pool_id: The ID of the pool to assign the virtual machine to
+        :param pulumi.Input[bool] reboot: Wether to reboot vm after creation
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VirtualMachineSerialDeviceArgs']]]] serial_devices: The serial devices
         :param pulumi.Input[bool] started: Whether to start the virtual machine
         :param pulumi.Input[bool] tablet_device: Whether to enable the USB tablet device
@@ -212,8 +222,10 @@ class VirtualMachine(pulumi.CustomResource):
         __props__["network_devices"] = network_devices
         __props__["network_interface_names"] = network_interface_names
         __props__["node_name"] = node_name
+        __props__["on_boot"] = on_boot
         __props__["operating_system"] = operating_system
         __props__["pool_id"] = pool_id
+        __props__["reboot"] = reboot
         __props__["serial_devices"] = serial_devices
         __props__["started"] = started
         __props__["tablet_device"] = tablet_device
@@ -375,6 +387,14 @@ class VirtualMachine(pulumi.CustomResource):
         return pulumi.get(self, "node_name")
 
     @property
+    @pulumi.getter(name="onBoot")
+    def on_boot(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Start VM on Node boot
+        """
+        return pulumi.get(self, "on_boot")
+
+    @property
     @pulumi.getter(name="operatingSystem")
     def operating_system(self) -> pulumi.Output[Optional['outputs.VirtualMachineOperatingSystem']]:
         """
@@ -389,6 +409,14 @@ class VirtualMachine(pulumi.CustomResource):
         The ID of the pool to assign the virtual machine to
         """
         return pulumi.get(self, "pool_id")
+
+    @property
+    @pulumi.getter
+    def reboot(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Wether to reboot vm after creation
+        """
+        return pulumi.get(self, "reboot")
 
     @property
     @pulumi.getter(name="serialDevices")

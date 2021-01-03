@@ -111,6 +111,10 @@ export class VirtualMachine extends pulumi.CustomResource {
      */
     public readonly nodeName!: pulumi.Output<string>;
     /**
+     * Start VM on Node boot
+     */
+    public readonly onBoot!: pulumi.Output<boolean | undefined>;
+    /**
      * The operating system configuration
      */
     public readonly operatingSystem!: pulumi.Output<outputs.VM.VirtualMachineOperatingSystem | undefined>;
@@ -118,6 +122,10 @@ export class VirtualMachine extends pulumi.CustomResource {
      * The ID of the pool to assign the virtual machine to
      */
     public readonly poolId!: pulumi.Output<string | undefined>;
+    /**
+     * Wether to reboot vm after creation
+     */
+    public readonly reboot!: pulumi.Output<boolean | undefined>;
     /**
      * The serial devices
      */
@@ -174,8 +182,10 @@ export class VirtualMachine extends pulumi.CustomResource {
             inputs["networkDevices"] = state ? state.networkDevices : undefined;
             inputs["networkInterfaceNames"] = state ? state.networkInterfaceNames : undefined;
             inputs["nodeName"] = state ? state.nodeName : undefined;
+            inputs["onBoot"] = state ? state.onBoot : undefined;
             inputs["operatingSystem"] = state ? state.operatingSystem : undefined;
             inputs["poolId"] = state ? state.poolId : undefined;
+            inputs["reboot"] = state ? state.reboot : undefined;
             inputs["serialDevices"] = state ? state.serialDevices : undefined;
             inputs["started"] = state ? state.started : undefined;
             inputs["tabletDevice"] = state ? state.tabletDevice : undefined;
@@ -202,8 +212,10 @@ export class VirtualMachine extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["networkDevices"] = args ? args.networkDevices : undefined;
             inputs["nodeName"] = args ? args.nodeName : undefined;
+            inputs["onBoot"] = args ? args.onBoot : undefined;
             inputs["operatingSystem"] = args ? args.operatingSystem : undefined;
             inputs["poolId"] = args ? args.poolId : undefined;
+            inputs["reboot"] = args ? args.reboot : undefined;
             inputs["serialDevices"] = args ? args.serialDevices : undefined;
             inputs["started"] = args ? args.started : undefined;
             inputs["tabletDevice"] = args ? args.tabletDevice : undefined;
@@ -307,6 +319,10 @@ export interface VirtualMachineState {
      */
     readonly nodeName?: pulumi.Input<string>;
     /**
+     * Start VM on Node boot
+     */
+    readonly onBoot?: pulumi.Input<boolean>;
+    /**
      * The operating system configuration
      */
     readonly operatingSystem?: pulumi.Input<inputs.VM.VirtualMachineOperatingSystem>;
@@ -314,6 +330,10 @@ export interface VirtualMachineState {
      * The ID of the pool to assign the virtual machine to
      */
     readonly poolId?: pulumi.Input<string>;
+    /**
+     * Wether to reboot vm after creation
+     */
+    readonly reboot?: pulumi.Input<boolean>;
     /**
      * The serial devices
      */
@@ -405,6 +425,10 @@ export interface VirtualMachineArgs {
      */
     readonly nodeName: pulumi.Input<string>;
     /**
+     * Start VM on Node boot
+     */
+    readonly onBoot?: pulumi.Input<boolean>;
+    /**
      * The operating system configuration
      */
     readonly operatingSystem?: pulumi.Input<inputs.VM.VirtualMachineOperatingSystem>;
@@ -412,6 +436,10 @@ export interface VirtualMachineArgs {
      * The ID of the pool to assign the virtual machine to
      */
     readonly poolId?: pulumi.Input<string>;
+    /**
+     * Wether to reboot vm after creation
+     */
+    readonly reboot?: pulumi.Input<boolean>;
     /**
      * The serial devices
      */

@@ -884,6 +884,14 @@
                         }
                     }
                 },
+                "retries": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "vmId": {
                     "type": "integer",
                     "language": {
@@ -988,6 +996,14 @@
                         }
                     }
                 },
+                "interface": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "size": {
                     "type": "integer",
                     "language": {
@@ -1005,7 +1021,10 @@
                     }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "interface"
+            ]
         },
         "proxmox:VM/VirtualMachineDiskSpeed:VirtualMachineDiskSpeed": {
             "properties": {
@@ -1067,6 +1086,14 @@
                     "items": {
                         "$ref": "#/types/proxmox:VM/VirtualMachineInitializationIpConfig:VirtualMachineInitializationIpConfig"
                     },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -2586,6 +2613,10 @@
                     "type": "string",
                     "description": "The node name\n"
                 },
+                "onBoot": {
+                    "type": "boolean",
+                    "description": "Start VM on Node boot\n"
+                },
                 "operatingSystem": {
                     "$ref": "#/types/proxmox:VM/VirtualMachineOperatingSystem:VirtualMachineOperatingSystem",
                     "description": "The operating system configuration\n"
@@ -2593,6 +2624,10 @@
                 "poolId": {
                     "type": "string",
                     "description": "The ID of the pool to assign the virtual machine to\n"
+                },
+                "reboot": {
+                    "type": "boolean",
+                    "description": "Wether to reboot vm after creation\n"
                 },
                 "serialDevices": {
                     "type": "array",
@@ -2697,6 +2732,10 @@
                     "type": "string",
                     "description": "The node name\n"
                 },
+                "onBoot": {
+                    "type": "boolean",
+                    "description": "Start VM on Node boot\n"
+                },
                 "operatingSystem": {
                     "$ref": "#/types/proxmox:VM/VirtualMachineOperatingSystem:VirtualMachineOperatingSystem",
                     "description": "The operating system configuration\n"
@@ -2704,6 +2743,10 @@
                 "poolId": {
                     "type": "string",
                     "description": "The ID of the pool to assign the virtual machine to\n"
+                },
+                "reboot": {
+                    "type": "boolean",
+                    "description": "Wether to reboot vm after creation\n"
                 },
                 "serialDevices": {
                     "type": "array",
@@ -2839,6 +2882,10 @@
                         "type": "string",
                         "description": "The node name\n"
                     },
+                    "onBoot": {
+                        "type": "boolean",
+                        "description": "Start VM on Node boot\n"
+                    },
                     "operatingSystem": {
                         "$ref": "#/types/proxmox:VM/VirtualMachineOperatingSystem:VirtualMachineOperatingSystem",
                         "description": "The operating system configuration\n"
@@ -2846,6 +2893,10 @@
                     "poolId": {
                         "type": "string",
                         "description": "The ID of the pool to assign the virtual machine to\n"
+                    },
+                    "reboot": {
+                        "type": "boolean",
+                        "description": "Wether to reboot vm after creation\n"
                     },
                     "serialDevices": {
                         "type": "array",
