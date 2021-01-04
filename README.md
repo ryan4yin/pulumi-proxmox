@@ -15,11 +15,6 @@ There is another more popular terraform provider: [Telmate/terraform-provider-pr
 - [ ] fix github actions, build and upload resource plugin to github releases automatically.
 - [ ] add Self Hosted resource plugin download url.
 
-known issues:
-
-1. cannot set vm's `onboot` to `True`(start the vm during system bootup)
-1. cannot resize disk automatically.
-
 ## Build the provider
 
 
