@@ -191,6 +191,8 @@ github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7Do
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/danitso/terraform-provider-proxmox v0.0.0-20210103223211-94cd3a9303b8 h1:5uWPQ76NA+9CrgZ1r30BdyhkWxhlYywuw63D2UbQCYw=
 github.com/danitso/terraform-provider-proxmox v0.0.0-20210103223211-94cd3a9303b8/go.mod h1:QX9K9W5ci1X+DOSbUqb69P8KRQ32RtaLIpnhDr9fgi4=
+github.com/danitso/terraform-provider-proxmox v0.0.0-20210104140601-c534da01cc79 h1:gJD5QkK+rBLYveUH5o/AC1KsH1tzdTsnekIzVzf7Iok=
+github.com/danitso/terraform-provider-proxmox v0.0.0-20210104140601-c534da01cc79/go.mod h1:QX9K9W5ci1X+DOSbUqb69P8KRQ32RtaLIpnhDr9fgi4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
