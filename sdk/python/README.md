@@ -120,7 +120,7 @@ VirtualMachine(
     started=True,  # start the vm after it was created successfully
     # clone from a vm template
     clone=VirtualMachineCloneArgs(
-        vm_id=100,  # template's vmId
+        vm_id=9000,  # template's vmId
         full=True,  # full clone, not linked clone
         datastore_id="local-lvm",  # template's datastore
         node_name="pve",  # template's node name
@@ -133,8 +133,8 @@ VirtualMachine(
         sockets=2,
     ),
     memory=VirtualMachineMemoryArgs(
-        dedicated="2048",  # unit: MB
-        shared="2048"
+        dedicated="4096",  # unit: MB
+        shared="4096"
     ),
     operating_system=VirtualMachineOperatingSystemArgs(
         type="l26"  # l26: linux2.6-linux5.x
