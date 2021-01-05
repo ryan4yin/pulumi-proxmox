@@ -148,7 +148,9 @@ VirtualMachine(
         type="l26"  # l26: linux2.6-linux5.x
     ),
     agent=VirtualMachineAgentArgs(
-        enabled=True,  # enable qemu guest agent
+        # please confirm you have qemu-guest-agent in your vm before enable this!
+        # otherwise this may cause the vm to fail to shutdown/reboot!
+        enabled=False,
         timeout="60s",  # timeout
     ),
     disks=[
