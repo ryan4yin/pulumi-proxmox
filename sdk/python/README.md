@@ -142,6 +142,7 @@ VirtualMachine(
     ),
     agent=VirtualMachineAgentArgs(
         enabled=True,  # enable qemu guest agent
+        timeout=60,  # timeout in seconds
     ),
     disks=[
         VirtualMachineDiskArgs(
@@ -179,6 +180,7 @@ VirtualMachine(
             keys=[
                 Path("ssh-common.pub").read_text()
             ],
+            password="chage_me",  # needed when login from console
             username="root",
         )
     ),
