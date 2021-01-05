@@ -159,6 +159,7 @@ VirtualMachine(
     ],
     # cloud init configuration
     initialization=VirtualMachineInitializationArgs(
+        type="nocloud",  # 'nocloud' for linux,  'configdrive2' for windows
         datastore_id="local-lvm",
         dns=VirtualMachineInitializationDnsArgs(
             # dns servers,
