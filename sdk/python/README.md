@@ -7,8 +7,6 @@ A Pulumi Provider which adds support for Proxmox solutions.
 
 based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox), read its docs for details.
 
-There is another more popular terraform provider: [Telmate/terraform-provider-proxmox](https://github.com/Telmate/terraform-provider-proxmox). It has fewer bugs.
-
 ## TODO
 
 - [ ] fix Bug: cannot read configuration from EnvVars `PROXMOX_VE_ENDPOINT` `PROXMOX_VE_USERNAME` etc.
@@ -117,9 +115,9 @@ VirtualMachine(
     name="ubuntu-vm-0",
     description="a ubuntu vm for test",
     node_name="pve",
-    # start the virtual machine after it was created successfully,
-    # and set `StartOnBoot` to true.(the VM will be started during system bootup)
-    started=True,
+    on_boot=True,  # start the vm during system bootup
+    reboot=False,  # reboot the vm after it was created successfully
+    started=True,  # start the vm after it was created successfully
     # clone from a vm template
     clone=VirtualMachineCloneArgs(
         vm_id=100,  # template's vmId
@@ -146,6 +144,7 @@ VirtualMachine(
     ),
     disks=[
         VirtualMachineDiskArgs(
+            interface="scsi0",
             datastore_id="local-lvm",
             size="30",  # unit: GB
         )
@@ -197,3 +196,8 @@ please read [danitso/terraform-provider-proxmox](https://github.com/danitso/terr
 
 all information about sdks are configured in `provider/resources.go`, if you want to help me, take a look at it.
 
+
+## Related Projects
+
+- [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox)
+- [Telmate/terraform-provider-proxmox](https://github.com/Telmate/terraform-provider-proxmox)
