@@ -142,7 +142,7 @@ VirtualMachine(
     ),
     agent=VirtualMachineAgentArgs(
         enabled=True,  # enable qemu guest agent
-        timeout=60,  # timeout in seconds
+        timeout="60s",  # timeout
     ),
     disks=[
         VirtualMachineDiskArgs(
