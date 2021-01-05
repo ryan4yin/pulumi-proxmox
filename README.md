@@ -25,7 +25,14 @@ then use the following command to build all sdks:
 make build_sdks
 ```
 
-## Installing
+## Installation
+
+>Currently only supports python sdk, other languages ​​please install sdk from source.
+
+1. Resources plugin for Linux are available as tarballs in the [release](https://github.com/ryan4yin/pulumi-proxmox/releases) page.
+1. Follow the installation instructions in releases to install the resource plugin and the python sdk.
+
+## Building From Source
 
 This package is available in many languages in the standard packaging formats.
 
