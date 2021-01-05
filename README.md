@@ -131,6 +131,7 @@ VirtualMachine(
     cpu=VirtualMachineCpuArgs(
         cores=2,
         sockets=2,
+        type="kvm64",  # set it to kvm64 for better vm migration
     ),
     memory=VirtualMachineMemoryArgs(
         dedicated="4096",  # unit: MB
@@ -159,6 +160,7 @@ VirtualMachine(
     ],
     # cloud init configuration
     initialization=VirtualMachineInitializationArgs(
+        type="nocloud",  # 'nocloud' for linux,  'configdrive2' for windows
         datastore_id="local-lvm",
         dns=VirtualMachineInitializationDnsArgs(
             # dns servers,
