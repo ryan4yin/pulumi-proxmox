@@ -18,12 +18,12 @@ import (
 	"unicode"
 
 	// "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/danitso/terraform-provider-proxmox/proxmoxtf"
 	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v2/go/common/tokens"
-	"github.com/danitso/terraform-provider-proxmox/proxmoxtf"
 )
 
 // all of the token components used below.
@@ -33,10 +33,10 @@ const (
 	// modules:
 	mainMod = "index" // the main module
 
-	vmMod = "VM"
+	vmMod        = "VM"
 	containerMod = "CT"
 
-	systemMod = "System"
+	systemMod     = "System"
 	permissionMod = "Permission"
 
 	storageMod = "Storage"
@@ -107,9 +107,9 @@ func Provider() tfbridge.ProviderInfo {
 		License:     "Apache-2.0",
 		Homepage:    "https://github.com/ryan4yin/pulumi-proxmox",
 		Repository:  "https://github.com/ryan4yin/pulumi-proxmox",
-		// TODO Self Hosted resource plugin download url.
-		// PluginDownloadURL: "",
-		Config:      map[string]*tfbridge.SchemaInfo{
+		// TODO resource plugin download url.
+		// PluginDownloadURL: "https://github.com/ryan4yin/pulumi-proxmox/releases/download/v0.0.5/pulumi-resource-proxmox-v0.0.5-linux_amd64.tgz",
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here
 			// TODO cannot read configuration from EnvVars!
 			"endpoint": {
@@ -139,54 +139,53 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. 
+		Resources: map[string]*tfbridge.ResourceInfo{
+			// Map each resource in the Terraform provider to a Pulumi type.
 			// The multi-line form is needed only if you wish to override types or other default options.
 
-			"proxmox_virtual_environment_vm": {Tok: makeResource(vmMod, "VirtualMachine")},
+			"proxmox_virtual_environment_vm":        {Tok: makeResource(vmMod, "VirtualMachine")},
 			"proxmox_virtual_environment_container": {Tok: makeResource(containerMod, "Container")},
 
 			// Storage
 			"proxmox_virtual_environment_file": {Tok: makeResource(storageMod, "File")},
 
 			// System
-			"proxmox_virtual_environment_dns": {Tok: makeResource(systemMod, "DNS")},
+			"proxmox_virtual_environment_dns":         {Tok: makeResource(systemMod, "DNS")},
 			"proxmox_virtual_environment_certificate": {Tok: makeResource(systemMod, "Certifi")},
-			"proxmox_virtual_environment_hosts": {Tok: makeResource(systemMod, "Hosts")},
-			"proxmox_virtual_environment_time": {Tok: makeResource(systemMod, "Time")},
+			"proxmox_virtual_environment_hosts":       {Tok: makeResource(systemMod, "Hosts")},
+			"proxmox_virtual_environment_time":        {Tok: makeResource(systemMod, "Time")},
 
 			// Permission
-			"proxmox_virtual_environment_user": {Tok: makeResource(permissionMod, "User")},
+			"proxmox_virtual_environment_user":  {Tok: makeResource(permissionMod, "User")},
 			"proxmox_virtual_environment_group": {Tok: makeResource(permissionMod, "Group")},
-			"proxmox_virtual_environment_pool": {Tok: makeResource(permissionMod, "Pool")},
-			"proxmox_virtual_environment_role": {Tok: makeResource(permissionMod, "Role")},
+			"proxmox_virtual_environment_pool":  {Tok: makeResource(permissionMod, "Pool")},
+			"proxmox_virtual_environment_role":  {Tok: makeResource(permissionMod, "Role")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. 
+			// Map each resource in the Terraform provider to a Pulumi function.
 			"proxmox_virtual_environment_version": {Tok: makeDataSource(mainMod, "getVersion")},
-			"proxmox_virtual_environment_nodes": {Tok: makeDataSource(mainMod, "getNodes")},
+			"proxmox_virtual_environment_nodes":   {Tok: makeDataSource(mainMod, "getNodes")},
 
 			// Storage
 			"proxmox_virtual_environment_datastores": {Tok: makeDataSource(storageMod, "getDatastores")},
-			
+
 			// System Configuration
-			"proxmox_virtual_environment_dns": {Tok: makeDataSource(systemMod, "getDNS")},
-			"proxmox_virtual_environment_time": {Tok: makeDataSource(systemMod, "getTime")},
+			"proxmox_virtual_environment_dns":   {Tok: makeDataSource(systemMod, "getDNS")},
+			"proxmox_virtual_environment_time":  {Tok: makeDataSource(systemMod, "getTime")},
 			"proxmox_virtual_environment_hosts": {Tok: makeDataSource(systemMod, "getHosts")},
 
 			// Permissions
 			"proxmox_virtual_environment_users": {Tok: makeDataSource(permissionMod, "getUsers")},
-			"proxmox_virtual_environment_user": {Tok: makeDataSource(permissionMod, "getUser")},
+			"proxmox_virtual_environment_user":  {Tok: makeDataSource(permissionMod, "getUser")},
 
-			"proxmox_virtual_environment_group": {Tok: makeDataSource(permissionMod, "getGroup")},
+			"proxmox_virtual_environment_group":  {Tok: makeDataSource(permissionMod, "getGroup")},
 			"proxmox_virtual_environment_groups": {Tok: makeDataSource(permissionMod, "getGroups")},
 
-			"proxmox_virtual_environment_pool": {Tok: makeDataSource(permissionMod, "getPool")},
+			"proxmox_virtual_environment_pool":  {Tok: makeDataSource(permissionMod, "getPool")},
 			"proxmox_virtual_environment_pools": {Tok: makeDataSource(permissionMod, "getPools")},
 
-			"proxmox_virtual_environment_role": {Tok: makeDataSource(permissionMod, "getRole")},
+			"proxmox_virtual_environment_role":  {Tok: makeDataSource(permissionMod, "getRole")},
 			"proxmox_virtual_environment_roles": {Tok: makeDataSource(permissionMod, "getRoles")},
-
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
