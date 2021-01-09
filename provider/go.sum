@@ -193,6 +193,8 @@ github.com/danitso/terraform-provider-proxmox v0.0.0-20210103223211-94cd3a9303b8
 github.com/danitso/terraform-provider-proxmox v0.0.0-20210103223211-94cd3a9303b8/go.mod h1:QX9K9W5ci1X+DOSbUqb69P8KRQ32RtaLIpnhDr9fgi4=
 github.com/danitso/terraform-provider-proxmox v0.0.0-20210104140601-c534da01cc79 h1:gJD5QkK+rBLYveUH5o/AC1KsH1tzdTsnekIzVzf7Iok=
 github.com/danitso/terraform-provider-proxmox v0.0.0-20210104140601-c534da01cc79/go.mod h1:QX9K9W5ci1X+DOSbUqb69P8KRQ32RtaLIpnhDr9fgi4=
+github.com/danitso/terraform-provider-proxmox v0.0.0-20210109062334-08d93e539070 h1:Oh5ByfLL8mUXb7sI/326Gyr0uvcGdL/z7pkD7Corn74=
+github.com/danitso/terraform-provider-proxmox v0.0.0-20210109062334-08d93e539070/go.mod h1:QX9K9W5ci1X+DOSbUqb69P8KRQ32RtaLIpnhDr9fgi4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

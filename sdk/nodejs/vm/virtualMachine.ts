@@ -143,6 +143,30 @@ export class VirtualMachine extends pulumi.CustomResource {
      */
     public readonly template!: pulumi.Output<boolean | undefined>;
     /**
+     * Clone VM timeout
+     */
+    public readonly timeoutClone!: pulumi.Output<number | undefined>;
+    /**
+     * MoveDisk timeout
+     */
+    public readonly timeoutMoveDisk!: pulumi.Output<number | undefined>;
+    /**
+     * Reboot timeout
+     */
+    public readonly timeoutReboot!: pulumi.Output<number | undefined>;
+    /**
+     * Shutdown timeout
+     */
+    public readonly timeoutShutdownVm!: pulumi.Output<number | undefined>;
+    /**
+     * Start VM timeout
+     */
+    public readonly timeoutStartVm!: pulumi.Output<number | undefined>;
+    /**
+     * Stop VM timeout
+     */
+    public readonly timeoutStopVm!: pulumi.Output<number | undefined>;
+    /**
      * The VGA configuration
      */
     public readonly vga!: pulumi.Output<outputs.VM.VirtualMachineVga | undefined>;
@@ -190,6 +214,12 @@ export class VirtualMachine extends pulumi.CustomResource {
             inputs["started"] = state ? state.started : undefined;
             inputs["tabletDevice"] = state ? state.tabletDevice : undefined;
             inputs["template"] = state ? state.template : undefined;
+            inputs["timeoutClone"] = state ? state.timeoutClone : undefined;
+            inputs["timeoutMoveDisk"] = state ? state.timeoutMoveDisk : undefined;
+            inputs["timeoutReboot"] = state ? state.timeoutReboot : undefined;
+            inputs["timeoutShutdownVm"] = state ? state.timeoutShutdownVm : undefined;
+            inputs["timeoutStartVm"] = state ? state.timeoutStartVm : undefined;
+            inputs["timeoutStopVm"] = state ? state.timeoutStopVm : undefined;
             inputs["vga"] = state ? state.vga : undefined;
             inputs["vmId"] = state ? state.vmId : undefined;
         } else {
@@ -220,6 +250,12 @@ export class VirtualMachine extends pulumi.CustomResource {
             inputs["started"] = args ? args.started : undefined;
             inputs["tabletDevice"] = args ? args.tabletDevice : undefined;
             inputs["template"] = args ? args.template : undefined;
+            inputs["timeoutClone"] = args ? args.timeoutClone : undefined;
+            inputs["timeoutMoveDisk"] = args ? args.timeoutMoveDisk : undefined;
+            inputs["timeoutReboot"] = args ? args.timeoutReboot : undefined;
+            inputs["timeoutShutdownVm"] = args ? args.timeoutShutdownVm : undefined;
+            inputs["timeoutStartVm"] = args ? args.timeoutStartVm : undefined;
+            inputs["timeoutStopVm"] = args ? args.timeoutStopVm : undefined;
             inputs["vga"] = args ? args.vga : undefined;
             inputs["vmId"] = args ? args.vmId : undefined;
             inputs["ipv4Addresses"] = undefined /*out*/;
@@ -351,6 +387,30 @@ export interface VirtualMachineState {
      */
     readonly template?: pulumi.Input<boolean>;
     /**
+     * Clone VM timeout
+     */
+    readonly timeoutClone?: pulumi.Input<number>;
+    /**
+     * MoveDisk timeout
+     */
+    readonly timeoutMoveDisk?: pulumi.Input<number>;
+    /**
+     * Reboot timeout
+     */
+    readonly timeoutReboot?: pulumi.Input<number>;
+    /**
+     * Shutdown timeout
+     */
+    readonly timeoutShutdownVm?: pulumi.Input<number>;
+    /**
+     * Start VM timeout
+     */
+    readonly timeoutStartVm?: pulumi.Input<number>;
+    /**
+     * Stop VM timeout
+     */
+    readonly timeoutStopVm?: pulumi.Input<number>;
+    /**
      * The VGA configuration
      */
     readonly vga?: pulumi.Input<inputs.VM.VirtualMachineVga>;
@@ -456,6 +516,30 @@ export interface VirtualMachineArgs {
      * Whether to create a template
      */
     readonly template?: pulumi.Input<boolean>;
+    /**
+     * Clone VM timeout
+     */
+    readonly timeoutClone?: pulumi.Input<number>;
+    /**
+     * MoveDisk timeout
+     */
+    readonly timeoutMoveDisk?: pulumi.Input<number>;
+    /**
+     * Reboot timeout
+     */
+    readonly timeoutReboot?: pulumi.Input<number>;
+    /**
+     * Shutdown timeout
+     */
+    readonly timeoutShutdownVm?: pulumi.Input<number>;
+    /**
+     * Start VM timeout
+     */
+    readonly timeoutStartVm?: pulumi.Input<number>;
+    /**
+     * Stop VM timeout
+     */
+    readonly timeoutStopVm?: pulumi.Input<number>;
     /**
      * The VGA configuration
      */

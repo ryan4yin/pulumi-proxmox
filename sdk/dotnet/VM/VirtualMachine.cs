@@ -174,6 +174,42 @@ namespace Pulumi.Proxmox.VM
         public Output<bool?> Template { get; private set; } = null!;
 
         /// <summary>
+        /// Clone VM timeout
+        /// </summary>
+        [Output("timeoutClone")]
+        public Output<int?> TimeoutClone { get; private set; } = null!;
+
+        /// <summary>
+        /// MoveDisk timeout
+        /// </summary>
+        [Output("timeoutMoveDisk")]
+        public Output<int?> TimeoutMoveDisk { get; private set; } = null!;
+
+        /// <summary>
+        /// Reboot timeout
+        /// </summary>
+        [Output("timeoutReboot")]
+        public Output<int?> TimeoutReboot { get; private set; } = null!;
+
+        /// <summary>
+        /// Shutdown timeout
+        /// </summary>
+        [Output("timeoutShutdownVm")]
+        public Output<int?> TimeoutShutdownVm { get; private set; } = null!;
+
+        /// <summary>
+        /// Start VM timeout
+        /// </summary>
+        [Output("timeoutStartVm")]
+        public Output<int?> TimeoutStartVm { get; private set; } = null!;
+
+        /// <summary>
+        /// Stop VM timeout
+        /// </summary>
+        [Output("timeoutStopVm")]
+        public Output<int?> TimeoutStopVm { get; private set; } = null!;
+
+        /// <summary>
         /// The VGA configuration
         /// </summary>
         [Output("vga")]
@@ -386,6 +422,42 @@ namespace Pulumi.Proxmox.VM
         /// </summary>
         [Input("template")]
         public Input<bool>? Template { get; set; }
+
+        /// <summary>
+        /// Clone VM timeout
+        /// </summary>
+        [Input("timeoutClone")]
+        public Input<int>? TimeoutClone { get; set; }
+
+        /// <summary>
+        /// MoveDisk timeout
+        /// </summary>
+        [Input("timeoutMoveDisk")]
+        public Input<int>? TimeoutMoveDisk { get; set; }
+
+        /// <summary>
+        /// Reboot timeout
+        /// </summary>
+        [Input("timeoutReboot")]
+        public Input<int>? TimeoutReboot { get; set; }
+
+        /// <summary>
+        /// Shutdown timeout
+        /// </summary>
+        [Input("timeoutShutdownVm")]
+        public Input<int>? TimeoutShutdownVm { get; set; }
+
+        /// <summary>
+        /// Start VM timeout
+        /// </summary>
+        [Input("timeoutStartVm")]
+        public Input<int>? TimeoutStartVm { get; set; }
+
+        /// <summary>
+        /// Stop VM timeout
+        /// </summary>
+        [Input("timeoutStopVm")]
+        public Input<int>? TimeoutStopVm { get; set; }
 
         /// <summary>
         /// The VGA configuration
@@ -609,6 +681,42 @@ namespace Pulumi.Proxmox.VM
         /// </summary>
         [Input("template")]
         public Input<bool>? Template { get; set; }
+
+        /// <summary>
+        /// Clone VM timeout
+        /// </summary>
+        [Input("timeoutClone")]
+        public Input<int>? TimeoutClone { get; set; }
+
+        /// <summary>
+        /// MoveDisk timeout
+        /// </summary>
+        [Input("timeoutMoveDisk")]
+        public Input<int>? TimeoutMoveDisk { get; set; }
+
+        /// <summary>
+        /// Reboot timeout
+        /// </summary>
+        [Input("timeoutReboot")]
+        public Input<int>? TimeoutReboot { get; set; }
+
+        /// <summary>
+        /// Shutdown timeout
+        /// </summary>
+        [Input("timeoutShutdownVm")]
+        public Input<int>? TimeoutShutdownVm { get; set; }
+
+        /// <summary>
+        /// Start VM timeout
+        /// </summary>
+        [Input("timeoutStartVm")]
+        public Input<int>? TimeoutStartVm { get; set; }
+
+        /// <summary>
+        /// Stop VM timeout
+        /// </summary>
+        [Input("timeoutStopVm")]
+        public Input<int>? TimeoutStopVm { get; set; }
 
         /// <summary>
         /// The VGA configuration

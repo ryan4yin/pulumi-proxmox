@@ -40,6 +40,12 @@ class VirtualMachine(pulumi.CustomResource):
                  started: Optional[pulumi.Input[bool]] = None,
                  tablet_device: Optional[pulumi.Input[bool]] = None,
                  template: Optional[pulumi.Input[bool]] = None,
+                 timeout_clone: Optional[pulumi.Input[int]] = None,
+                 timeout_move_disk: Optional[pulumi.Input[int]] = None,
+                 timeout_reboot: Optional[pulumi.Input[int]] = None,
+                 timeout_shutdown_vm: Optional[pulumi.Input[int]] = None,
+                 timeout_start_vm: Optional[pulumi.Input[int]] = None,
+                 timeout_stop_vm: Optional[pulumi.Input[int]] = None,
                  vga: Optional[pulumi.Input[pulumi.InputType['VirtualMachineVgaArgs']]] = None,
                  vm_id: Optional[pulumi.Input[int]] = None,
                  __props__=None,
@@ -72,6 +78,12 @@ class VirtualMachine(pulumi.CustomResource):
         :param pulumi.Input[bool] started: Whether to start the virtual machine
         :param pulumi.Input[bool] tablet_device: Whether to enable the USB tablet device
         :param pulumi.Input[bool] template: Whether to create a template
+        :param pulumi.Input[int] timeout_clone: Clone VM timeout
+        :param pulumi.Input[int] timeout_move_disk: MoveDisk timeout
+        :param pulumi.Input[int] timeout_reboot: Reboot timeout
+        :param pulumi.Input[int] timeout_shutdown_vm: Shutdown timeout
+        :param pulumi.Input[int] timeout_start_vm: Start VM timeout
+        :param pulumi.Input[int] timeout_stop_vm: Stop VM timeout
         :param pulumi.Input[pulumi.InputType['VirtualMachineVgaArgs']] vga: The VGA configuration
         :param pulumi.Input[int] vm_id: The VM identifier
         """
@@ -117,6 +129,12 @@ class VirtualMachine(pulumi.CustomResource):
             __props__['started'] = started
             __props__['tablet_device'] = tablet_device
             __props__['template'] = template
+            __props__['timeout_clone'] = timeout_clone
+            __props__['timeout_move_disk'] = timeout_move_disk
+            __props__['timeout_reboot'] = timeout_reboot
+            __props__['timeout_shutdown_vm'] = timeout_shutdown_vm
+            __props__['timeout_start_vm'] = timeout_start_vm
+            __props__['timeout_stop_vm'] = timeout_stop_vm
             __props__['vga'] = vga
             __props__['vm_id'] = vm_id
             __props__['ipv4_addresses'] = None
@@ -160,6 +178,12 @@ class VirtualMachine(pulumi.CustomResource):
             started: Optional[pulumi.Input[bool]] = None,
             tablet_device: Optional[pulumi.Input[bool]] = None,
             template: Optional[pulumi.Input[bool]] = None,
+            timeout_clone: Optional[pulumi.Input[int]] = None,
+            timeout_move_disk: Optional[pulumi.Input[int]] = None,
+            timeout_reboot: Optional[pulumi.Input[int]] = None,
+            timeout_shutdown_vm: Optional[pulumi.Input[int]] = None,
+            timeout_start_vm: Optional[pulumi.Input[int]] = None,
+            timeout_stop_vm: Optional[pulumi.Input[int]] = None,
             vga: Optional[pulumi.Input[pulumi.InputType['VirtualMachineVgaArgs']]] = None,
             vm_id: Optional[pulumi.Input[int]] = None) -> 'VirtualMachine':
         """
@@ -196,6 +220,12 @@ class VirtualMachine(pulumi.CustomResource):
         :param pulumi.Input[bool] started: Whether to start the virtual machine
         :param pulumi.Input[bool] tablet_device: Whether to enable the USB tablet device
         :param pulumi.Input[bool] template: Whether to create a template
+        :param pulumi.Input[int] timeout_clone: Clone VM timeout
+        :param pulumi.Input[int] timeout_move_disk: MoveDisk timeout
+        :param pulumi.Input[int] timeout_reboot: Reboot timeout
+        :param pulumi.Input[int] timeout_shutdown_vm: Shutdown timeout
+        :param pulumi.Input[int] timeout_start_vm: Start VM timeout
+        :param pulumi.Input[int] timeout_stop_vm: Stop VM timeout
         :param pulumi.Input[pulumi.InputType['VirtualMachineVgaArgs']] vga: The VGA configuration
         :param pulumi.Input[int] vm_id: The VM identifier
         """
@@ -230,6 +260,12 @@ class VirtualMachine(pulumi.CustomResource):
         __props__["started"] = started
         __props__["tablet_device"] = tablet_device
         __props__["template"] = template
+        __props__["timeout_clone"] = timeout_clone
+        __props__["timeout_move_disk"] = timeout_move_disk
+        __props__["timeout_reboot"] = timeout_reboot
+        __props__["timeout_shutdown_vm"] = timeout_shutdown_vm
+        __props__["timeout_start_vm"] = timeout_start_vm
+        __props__["timeout_stop_vm"] = timeout_stop_vm
         __props__["vga"] = vga
         __props__["vm_id"] = vm_id
         return VirtualMachine(resource_name, opts=opts, __props__=__props__)
@@ -449,6 +485,54 @@ class VirtualMachine(pulumi.CustomResource):
         Whether to create a template
         """
         return pulumi.get(self, "template")
+
+    @property
+    @pulumi.getter(name="timeoutClone")
+    def timeout_clone(self) -> pulumi.Output[Optional[int]]:
+        """
+        Clone VM timeout
+        """
+        return pulumi.get(self, "timeout_clone")
+
+    @property
+    @pulumi.getter(name="timeoutMoveDisk")
+    def timeout_move_disk(self) -> pulumi.Output[Optional[int]]:
+        """
+        MoveDisk timeout
+        """
+        return pulumi.get(self, "timeout_move_disk")
+
+    @property
+    @pulumi.getter(name="timeoutReboot")
+    def timeout_reboot(self) -> pulumi.Output[Optional[int]]:
+        """
+        Reboot timeout
+        """
+        return pulumi.get(self, "timeout_reboot")
+
+    @property
+    @pulumi.getter(name="timeoutShutdownVm")
+    def timeout_shutdown_vm(self) -> pulumi.Output[Optional[int]]:
+        """
+        Shutdown timeout
+        """
+        return pulumi.get(self, "timeout_shutdown_vm")
+
+    @property
+    @pulumi.getter(name="timeoutStartVm")
+    def timeout_start_vm(self) -> pulumi.Output[Optional[int]]:
+        """
+        Start VM timeout
+        """
+        return pulumi.get(self, "timeout_start_vm")
+
+    @property
+    @pulumi.getter(name="timeoutStopVm")
+    def timeout_stop_vm(self) -> pulumi.Output[Optional[int]]:
+        """
+        Stop VM timeout
+        """
+        return pulumi.get(self, "timeout_stop_vm")
 
     @property
     @pulumi.getter

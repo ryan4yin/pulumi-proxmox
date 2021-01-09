@@ -2648,6 +2648,30 @@
                     "type": "boolean",
                     "description": "Whether to create a template\n"
                 },
+                "timeoutClone": {
+                    "type": "integer",
+                    "description": "Clone VM timeout\n"
+                },
+                "timeoutMoveDisk": {
+                    "type": "integer",
+                    "description": "MoveDisk timeout\n"
+                },
+                "timeoutReboot": {
+                    "type": "integer",
+                    "description": "Reboot timeout\n"
+                },
+                "timeoutShutdownVm": {
+                    "type": "integer",
+                    "description": "Shutdown timeout\n"
+                },
+                "timeoutStartVm": {
+                    "type": "integer",
+                    "description": "Start VM timeout\n"
+                },
+                "timeoutStopVm": {
+                    "type": "integer",
+                    "description": "Stop VM timeout\n"
+                },
                 "vga": {
                     "$ref": "#/types/proxmox:VM/VirtualMachineVga:VirtualMachineVga",
                     "description": "The VGA configuration\n"
@@ -2766,6 +2790,30 @@
                 "template": {
                     "type": "boolean",
                     "description": "Whether to create a template\n"
+                },
+                "timeoutClone": {
+                    "type": "integer",
+                    "description": "Clone VM timeout\n"
+                },
+                "timeoutMoveDisk": {
+                    "type": "integer",
+                    "description": "MoveDisk timeout\n"
+                },
+                "timeoutReboot": {
+                    "type": "integer",
+                    "description": "Reboot timeout\n"
+                },
+                "timeoutShutdownVm": {
+                    "type": "integer",
+                    "description": "Shutdown timeout\n"
+                },
+                "timeoutStartVm": {
+                    "type": "integer",
+                    "description": "Start VM timeout\n"
+                },
+                "timeoutStopVm": {
+                    "type": "integer",
+                    "description": "Stop VM timeout\n"
                 },
                 "vga": {
                     "$ref": "#/types/proxmox:VM/VirtualMachineVga:VirtualMachineVga",
@@ -2916,6 +2964,30 @@
                     "template": {
                         "type": "boolean",
                         "description": "Whether to create a template\n"
+                    },
+                    "timeoutClone": {
+                        "type": "integer",
+                        "description": "Clone VM timeout\n"
+                    },
+                    "timeoutMoveDisk": {
+                        "type": "integer",
+                        "description": "MoveDisk timeout\n"
+                    },
+                    "timeoutReboot": {
+                        "type": "integer",
+                        "description": "Reboot timeout\n"
+                    },
+                    "timeoutShutdownVm": {
+                        "type": "integer",
+                        "description": "Shutdown timeout\n"
+                    },
+                    "timeoutStartVm": {
+                        "type": "integer",
+                        "description": "Start VM timeout\n"
+                    },
+                    "timeoutStopVm": {
+                        "type": "integer",
+                        "description": "Stop VM timeout\n"
                     },
                     "vga": {
                         "$ref": "#/types/proxmox:VM/VirtualMachineVga:VirtualMachineVga",

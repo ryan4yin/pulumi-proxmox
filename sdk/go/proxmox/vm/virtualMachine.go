@@ -67,6 +67,18 @@ type VirtualMachine struct {
 	TabletDevice pulumi.BoolPtrOutput `pulumi:"tabletDevice"`
 	// Whether to create a template
 	Template pulumi.BoolPtrOutput `pulumi:"template"`
+	// Clone VM timeout
+	TimeoutClone pulumi.IntPtrOutput `pulumi:"timeoutClone"`
+	// MoveDisk timeout
+	TimeoutMoveDisk pulumi.IntPtrOutput `pulumi:"timeoutMoveDisk"`
+	// Reboot timeout
+	TimeoutReboot pulumi.IntPtrOutput `pulumi:"timeoutReboot"`
+	// Shutdown timeout
+	TimeoutShutdownVm pulumi.IntPtrOutput `pulumi:"timeoutShutdownVm"`
+	// Start VM timeout
+	TimeoutStartVm pulumi.IntPtrOutput `pulumi:"timeoutStartVm"`
+	// Stop VM timeout
+	TimeoutStopVm pulumi.IntPtrOutput `pulumi:"timeoutStopVm"`
 	// The VGA configuration
 	Vga VirtualMachineVgaPtrOutput `pulumi:"vga"`
 	// The VM identifier
@@ -158,6 +170,18 @@ type virtualMachineState struct {
 	TabletDevice *bool `pulumi:"tabletDevice"`
 	// Whether to create a template
 	Template *bool `pulumi:"template"`
+	// Clone VM timeout
+	TimeoutClone *int `pulumi:"timeoutClone"`
+	// MoveDisk timeout
+	TimeoutMoveDisk *int `pulumi:"timeoutMoveDisk"`
+	// Reboot timeout
+	TimeoutReboot *int `pulumi:"timeoutReboot"`
+	// Shutdown timeout
+	TimeoutShutdownVm *int `pulumi:"timeoutShutdownVm"`
+	// Start VM timeout
+	TimeoutStartVm *int `pulumi:"timeoutStartVm"`
+	// Stop VM timeout
+	TimeoutStopVm *int `pulumi:"timeoutStopVm"`
 	// The VGA configuration
 	Vga *VirtualMachineVga `pulumi:"vga"`
 	// The VM identifier
@@ -219,6 +243,18 @@ type VirtualMachineState struct {
 	TabletDevice pulumi.BoolPtrInput
 	// Whether to create a template
 	Template pulumi.BoolPtrInput
+	// Clone VM timeout
+	TimeoutClone pulumi.IntPtrInput
+	// MoveDisk timeout
+	TimeoutMoveDisk pulumi.IntPtrInput
+	// Reboot timeout
+	TimeoutReboot pulumi.IntPtrInput
+	// Shutdown timeout
+	TimeoutShutdownVm pulumi.IntPtrInput
+	// Start VM timeout
+	TimeoutStartVm pulumi.IntPtrInput
+	// Stop VM timeout
+	TimeoutStopVm pulumi.IntPtrInput
 	// The VGA configuration
 	Vga VirtualMachineVgaPtrInput
 	// The VM identifier
@@ -276,6 +312,18 @@ type virtualMachineArgs struct {
 	TabletDevice *bool `pulumi:"tabletDevice"`
 	// Whether to create a template
 	Template *bool `pulumi:"template"`
+	// Clone VM timeout
+	TimeoutClone *int `pulumi:"timeoutClone"`
+	// MoveDisk timeout
+	TimeoutMoveDisk *int `pulumi:"timeoutMoveDisk"`
+	// Reboot timeout
+	TimeoutReboot *int `pulumi:"timeoutReboot"`
+	// Shutdown timeout
+	TimeoutShutdownVm *int `pulumi:"timeoutShutdownVm"`
+	// Start VM timeout
+	TimeoutStartVm *int `pulumi:"timeoutStartVm"`
+	// Stop VM timeout
+	TimeoutStopVm *int `pulumi:"timeoutStopVm"`
 	// The VGA configuration
 	Vga *VirtualMachineVga `pulumi:"vga"`
 	// The VM identifier
@@ -330,6 +378,18 @@ type VirtualMachineArgs struct {
 	TabletDevice pulumi.BoolPtrInput
 	// Whether to create a template
 	Template pulumi.BoolPtrInput
+	// Clone VM timeout
+	TimeoutClone pulumi.IntPtrInput
+	// MoveDisk timeout
+	TimeoutMoveDisk pulumi.IntPtrInput
+	// Reboot timeout
+	TimeoutReboot pulumi.IntPtrInput
+	// Shutdown timeout
+	TimeoutShutdownVm pulumi.IntPtrInput
+	// Start VM timeout
+	TimeoutStartVm pulumi.IntPtrInput
+	// Stop VM timeout
+	TimeoutStopVm pulumi.IntPtrInput
 	// The VGA configuration
 	Vga VirtualMachineVgaPtrInput
 	// The VM identifier
