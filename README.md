@@ -13,36 +13,33 @@ based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terrafo
 - [ ] fix github actions, build and upload resource plugin to github releases automatically.
 - [ ] set resource plugin download url(github releases).
 
-## Build the provider
 
+## Installation
+
+1. Resources plugin for Linux are available as tarballs in the [release](https://github.com/ryan4yin/pulumi-proxmox/releases) page.
+1. Follow the installation instructions in releases to install the resource plugin and the python sdk.
+1. for other languages, ​​please install sdk from source in the `sdk` folder.
+
+## Build and Install the provider From Source
 
 In order to properly build the sdks, the following tools are expected:
 - `pulumictl` (See the project's README for installation instructions: https://github.com/pulumi/pulumictl)
 
-then use the following command to build all sdks:
+to build all the sdks, you need install and set up all the 4 language sdks first: go/dotnet/python/nodejs.
+
+then use the following command to build the resource plugin and all the sdks:
 
 ```shell
 make build_sdks
 ```
 
-## Installation
+### Install Resource Plugin 
 
->Currently only supports python sdk, other languages ​​please install sdk from source.
-
-1. Resources plugin for Linux are available as tarballs in the [release](https://github.com/ryan4yin/pulumi-proxmox/releases) page.
-1. Follow the installation instructions in releases to install the resource plugin and the python sdk.
-
-## Building From Source
-
-This package is available in many languages in the standard packaging formats.
-
-first, build and install resource plugin, **this is necessary before you install any language's sdk**:
+first, build and install resource plugin:
 
 ```shell
 make install_resource_plugin
 ```
-
-then install the language's sdks and every thing will be allright.
 
 **Note**: Installing package directly from the package registry like pypi/npm/nuget is not supported yet, you need to install package from source via `make`.
 
