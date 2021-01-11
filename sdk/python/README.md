@@ -17,7 +17,7 @@ based on [danitso/terraform-provider-proxmox](https://github.com/danitso/terrafo
 ## Installation
 
 1. Resources plugin for Linux are available as tarballs in the [release](https://github.com/ryan4yin/pulumi-proxmox/releases) page.
-1. Follow the installation instructions in releases to install the resource plugin and the python sdk.
+1. Follow the installation instructions in release page to install the resource plugin and the python sdk.
 1. for other languages, ​​please install sdk from source in the `sdk` folder.
 
 ## Build and Install the provider From Source
