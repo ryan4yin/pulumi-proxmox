@@ -212,5 +212,11 @@ all information about sdks are configured in `provider/resources.go`, if you wan
 
 ## Related Projects
 
+pulumi providers:
+
+- [Matchlighter/pulumi-proxmoxve](https://github.com/Matchlighter/pulumi-proxmoxve)
+
+terraform providers:
+
 - [danitso/terraform-provider-proxmox](https://github.com/danitso/terraform-provider-proxmox)
 - [Telmate/terraform-provider-proxmox](https://github.com/Telmate/terraform-provider-proxmox)
