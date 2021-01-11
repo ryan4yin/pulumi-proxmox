@@ -94,7 +94,7 @@ export PROXMOX_VE_USERNAME=root@pam
 export PROXMOX_VE_PASSWORD="<password>"
 ```
 
-Create VirtualMachine using Python SDK:
+Create VirtualMachine using Python SDK(writing in other languages ​​is almost the same):
 
 ```python
 import os
