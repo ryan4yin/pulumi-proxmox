@@ -113,35 +113,42 @@ func Provider() tfbridge.ProviderInfo {
 			// Add any required configuration here
 			// TODO cannot read configuration from EnvVars!
 			"endpoint": {
+				Type: makeType("endpoint", "Endpoint"),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"PROXMOX_VE_ENDPOINT"},
+					EnvVars: []string{"PROXMOX_VE_ENDPOINT", "PM_VE_ENDPOINT"},
 				},
 			},
 			"insecure": {
+				Type: makeType("insecure", "Insecure"),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"PROXMOX_VE_INSECURE"},
+					EnvVars: []string{"PROXMOX_VE_INSECURE", "PM_VE_INSECURE"},
 				},
 			},
 			"otp": {
+				Type: makeType("otp", "OTP"),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"PROXMOX_VE_OTP"},
+					EnvVars: []string{"PROXMOX_VE_OTP", "PM_VE_OTP"},
 				},
 			},
 			"password": {
+				Type: makeType("password", "Password"),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"PROXMOX_VE_PASSWORD"},
+					EnvVars: []string{"PROXMOX_VE_PASSWORD", "PM_VE_PASSWORD"},
 				},
 			},
 			"username": {
+				Type: makeType("username", "Username"),
 				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"PROXMOX_VE_USERNAME"},
+					EnvVars: []string{"PROXMOX_VE_USERNAME", "PM_VE_USERNAME"},
 				},
 			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			// Map each resource in the Terraform provider to a Pulumi type.
-			// The multi-line form is needed only if you wish to override types or other default options.
+			// the resourceMap of terraform provider: https://github.com/danitso/terraform-provider-proxmox/blob/release-0.4.0/proxmoxtf/provider.go
+			"proxmox_virtual_environment_cluster_alias":   {Tok: makeResource(mainMod, "ClusterAlias")},
+			"proxmox_virtual_environment_cluster_aliases": {Tok: makeResource(mainMod, "ClusterAliases")},
 
 			"proxmox_virtual_environment_vm":        {Tok: makeResource(vmMod, "VirtualMachine")},
 			"proxmox_virtual_environment_container": {Tok: makeResource(containerMod, "Container")},
@@ -162,12 +169,15 @@ func Provider() tfbridge.ProviderInfo {
 			"proxmox_virtual_environment_role":  {Tok: makeResource(permissionMod, "Role")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function.
-			"proxmox_virtual_environment_version": {Tok: makeDataSource(mainMod, "getVersion")},
-			"proxmox_virtual_environment_nodes":   {Tok: makeDataSource(mainMod, "getNodes")},
+			"proxmox_virtual_environment_cluster_alias":   {Tok: makeDataSource(mainMod, "getClusterAlias")},
+			"proxmox_virtual_environment_cluster_aliases": {Tok: makeDataSource(mainMod, "getClusterAliases")},
 
 			// Storage
 			"proxmox_virtual_environment_datastores": {Tok: makeDataSource(storageMod, "getDatastores")},
+
+			// Map each resource in the Terraform provider to a Pulumi function.
+			"proxmox_virtual_environment_version": {Tok: makeDataSource(mainMod, "getVersion")},
+			"proxmox_virtual_environment_nodes":   {Tok: makeDataSource(mainMod, "getNodes")},
 
 			// System Configuration
 			"proxmox_virtual_environment_dns":   {Tok: makeDataSource(systemMod, "getDNS")},

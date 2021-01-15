@@ -3,6 +3,9 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 # Export this package's modules as members:
+from .cluster_alias import *
+from .get_cluster_alias import *
+from .get_cluster_aliases import *
 from .get_nodes import *
 from .get_version import *
 from .provider import *

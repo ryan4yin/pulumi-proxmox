@@ -13,10 +13,13 @@
         "strict": true
     },
     "files": [
+        "clusterAlias.ts",
         "config/index.ts",
         "config/vars.ts",
         "ct/container.ts",
         "ct/index.ts",
+        "getClusterAlias.ts",
+        "getClusterAliases.ts",
         "getNodes.ts",
         "getVersion.ts",
         "index.ts",

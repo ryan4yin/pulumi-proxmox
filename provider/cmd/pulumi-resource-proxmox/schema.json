@@ -3000,6 +3000,61 @@
                 },
                 "type": "object"
             }
+        },
+        "proxmox:index/clusterAlias:ClusterAlias": {
+            "properties": {
+                "cidr": {
+                    "type": "string",
+                    "description": "IP/CIDR block\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Alias comment\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Alias name\n"
+                }
+            },
+            "required": [
+                "cidr",
+                "name"
+            ],
+            "inputProperties": {
+                "cidr": {
+                    "type": "string",
+                    "description": "IP/CIDR block\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "Alias comment\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Alias name\n"
+                }
+            },
+            "requiredInputs": [
+                "cidr"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ClusterAlias resources.\n",
+                "properties": {
+                    "cidr": {
+                        "type": "string",
+                        "description": "IP/CIDR block\n"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "Alias comment\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Alias name\n"
+                    }
+                },
+                "type": "object"
+            }
         }
     },
     "functions": {
@@ -3613,6 +3668,67 @@
                     "nodeName",
                     "timeZone",
                     "utcTime",
+                    "id"
+                ]
+            }
+        },
+        "proxmox:index/getClusterAlias:getClusterAlias": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getClusterAlias.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getClusterAlias.\n",
+                "properties": {
+                    "cidr": {
+                        "type": "string"
+                    },
+                    "comment": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cidr",
+                    "comment",
+                    "name",
+                    "id"
+                ]
+            }
+        },
+        "proxmox:index/getClusterAliases:getClusterAliases": {
+            "outputs": {
+                "description": "A collection of values returned by getClusterAliases.\n",
+                "properties": {
+                    "aliasIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "aliasIds",
                     "id"
                 ]
             }
