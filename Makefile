@@ -109,7 +109,7 @@ install_plugins::
 
 install_resource_plugin::
 	cd $(WORKING_DIR)/bin && tar -czf ${PROVIDER}-${VERSION}.tgz ${PROVIDER}
-	pulumi plugin install resource proxmox ${VERSION} -f $(WORKING_DIR)/bin/${PROVIDER}-${VERSION}.tgz
+	pulumi plugin install resource ${PACK} ${VERSION} -f $(WORKING_DIR)/bin/${PROVIDER}-${VERSION}.tgz
 
 
 install_dotnet_sdk::
